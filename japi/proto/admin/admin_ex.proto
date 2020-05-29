@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package jz.micro.jzback.srv.admin;
+
+
+message CommonOutput {
+    int32 http_code = 1;
+    int32 code = 2;
+    string msg = 3;
+    string detail = 4;
+    bytes data = 5;
+}
+

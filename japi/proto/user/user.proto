@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+import "user_ex.proto";
+
+package user;
+
+service User {
+    //    rpc VistorLogin (LoginInput) returns (jz.micro.jzback.srv.commom.CommonOutput) {
+    //    }
+    //    rpc MobileLogin (LoginInput) returns (jz.micro.jzback.srv.commom.CommonOutput) {
+    //    }
+    //    rpc AccountLogin (LoginInput) returns (jz.micro.jzback.srv.commom.CommonOutput) {
+    //    }
+    //    rpc ActiveAccount (ActiveAccountInput) returns (jz.micro.jzback.srv.commom.CommonOutput) {
+    //    }
+    //    rpc DeviceId (DeviceIdInput) returns (jz.micro.jzback.srv.commom.CommonOutput) {
+    //    }
+
+    //    rpc BindIDcard (BindIDcardInput) returns (jz.micro.jzback.srv.commom.CommonOutput) {
+    //    }
+    //    rpc BindMobile (BindMobileInput) returns (jz.micro.jzback.srv.commom.CommonOutput) {
+    //    }
+    //    //-----------------------------------------------------
+    //    rpc DeviceLogin (DeviceLoginInput) returns (jz.micro.jzback.srv.commom.CommonOutput) {
+    //    }
+    //    //-----------------------------------------------------
+    //    rpc UpdatePwdByMobile (UpdatePwdByMobileInput) returns (jz.micro.jzback.srv.commom.CommonOutput) {
+    //    }
+    //    rpc UpdatePwdByIDcard (UpdatePwdByIDcardInput) returns (jz.micro.jzback.srv.commom.CommonOutput) {
+    //    }
+    //    rpc VerifyIdcard (VerifyIdcardInput) returns (jz.micro.jzback.srv.commom.CommonOutput) {
+    //    }
+    //    rpc GetCustomer (GetCustomerInput) returns (jz.micro.jzback.srv.commom.CommonOutput) {
+    //    }
+    //    rpc PayLog (PayLogInput) returns (jz.micro.jzback.srv.commom.CommonOutput) {
+    //    }
+    //    rpc CdKeyList (CdKeyListInput) returns (jz.micro.jzback.srv.commom.CommonOutput) {
+    //    }
+    //    rpc CdKeyInfo (CdKeyInfoInput) returns (jz.micro.jzback.srv.commom.CommonOutput) {
+    //    }
+    //    rpc CdKeyMy (CdKeyMyInput) returns (jz.micro.jzback.srv.commom.CommonOutput) {
+    //    }
+//    rpc BackLogin(BackLoginInput)returns(CommonOutput){
+//
+//    }
+//    rpc AddAccess(AddAccessInput) returns(CommonOutput){
+//
+//    }
+//    rpc DeleteAccess(DeleteAccessInput) returns(CommonOutput){
+//
+//    }
+//    rpc GetAccessList (GetAccessListInput) returns (CommonOutput) {
+//    }
+//    rpc GetRoleList (GetRoleListInput) returns (CommonOutput) {
+//    }
+//    rpc AddRole (AddRoleInput) returns (CommonOutput) {
+//    }
+//    rpc EditRole (EditRoleInput) returns (CommonOutput) {
+//    }
+//    rpc DeleteRole (DeleteRoleInput) returns (CommonOutput) {
+//    }
+//    rpc AddUser(AddUserInput)returns(CommonOutput){
+//
+//    }
+//    rpc DelUser(DelUserInput)returns(CommonOutput){
+//
+//    }
+//    rpc GetBackUerInfo (GetBackUerInfoInput) returns (CommonOutput) {
+//    }
+//    rpc GetChannelInfo (GetChannelInfoInput) returns (CommonOutput) {
+//    }
+
+    rpc MultiLoginMobile (MultiLoginMobileInput) returns (CommonOutput) {
+    } //合集二合一
+    rpc SingleRegistQuick (SingleRegistQuickInput) returns (CommonOutput) {
+    } //单包快速注册
+    rpc SingleRegistAccount (SingleRegistAccountInput) returns (CommonOutput) {
+    } //单包账号注册
+    rpc SingleRegistMobile (SingleRegistMobileInput) returns (CommonOutput) {
+    } //单包手机号注册
+    rpc SingleLoginGuest (SingleLoginGuestInput) returns (CommonOutput) {
+    } //单包游客登陆
+    rpc SingleLoginMobile (SingleLoginMobileInput) returns (CommonOutput) {
+    } //单包手机号登陆
+    rpc SingleLoginAccount (SingleLoginAccountInput) returns (CommonOutput) {
+    } //单包账号登陆
+}

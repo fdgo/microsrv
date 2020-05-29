@@ -1,0 +1,29 @@
+version: '3'
+services:
+  nsqlookupd:
+    image: nsqio/nsq
+    command: /nsqlookupd
+    ports:
+    - "4160:4160"
+    - "4161:4161"
+  nsqd:
+    image: nsqio/nsq
+    command: /nsqd -data-path=/data --broadcast-address=192.168.207.128 --lookupd-tcp-address=nsqlookupd:4160
+    volumes:
+    - /opt/data/nsq:/data
+    depends_on:
+    - nsqlookupd
+    ports:
+    - "4150:4150"
+    - "4151:4151"
+  nsqadmin:
+    image: nsqio/nsq
+    command: /nsqadmin --lookupd-http-address=nsqlookupd:4161
+    depends_on:
+    - nsqlookupd
+    ports:
+    - "4171:4171"
+
+  docker run -d -p 9200:9200 -p 9300:9300 --name search elasticsearch
+  docker run -d -p 8500:8500 --name consul  consul agent -server -bootstrap-expect=1  -client 0.0.0.0 -ui -bind=0.0.0.0 -advertise-wan=117.50.38.84
+  docker run -d -p 8500:8500 --name consul  consul agent -server -bootstrap-expect 1  -client 0.0.0.0 -ui -bind=0.0.0.0 -join 10.9.131.117

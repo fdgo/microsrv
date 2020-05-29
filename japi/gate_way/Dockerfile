@@ -1,0 +1,12 @@
+FROM busybox
+MAINTAINER wmh "wangminghui0622@126.com"
+WORKDIR /go/app
+COPY . /go/app
+ENV CONSUL_ADDRESS=10.9.137.131:8500 \
+    MICRO_REGISTRY=consul \
+    MICRO_REGISTRY_ADDRESS=10.9.137.131:8500 \
+    MICRO_API_HANDLER=http
+EXPOSE 8080 81
+ENTRYPOINT ["./gate_way"]
+LABEL Name=gate_way Version=0.0.1
+

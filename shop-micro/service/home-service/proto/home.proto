@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package shop.srv.home;
+import "shop-micro/shopproto/news/news.proto";
+import "shop-micro/shopproto/product/product.proto";
+
+service HomeService {
+    rpc FindHomeHeaders (HomeHeaderReq) returns (HomeHeadersResp) {}
+    rpc FindHomeContents (HomeContentsReq) returns (HomeContentsResp) {}
+}
+
+message HomeHeaderReq {
+}
+
+message HomeNav {
+    int64 id  = 1;
+    string title = 2;
+    string enTitle = 3;
+    string imgUrl = 4;
+    int32 types = 5;
+    int32 classId = 6;
+}
+
+message HomeCourse {
+    int64 id = 1;
+    string title = 2;
+    string enTitle = 3;
+    string imgUrl = 4;
+    string url = 5;
+}
+
+message HomeHeadersResp {
+    repeated HomeNav homeNavList = 1;
+    repeated HomeCourse homeCourseList = 2;
+}
+
+message HomeContentsReq {
+
+}
+
+message HomeContentsResp {
+    repeated shopproto.Product HomeGoodsList = 1;
+    repeated shopproto.News HomeNewsList = 2;
+}

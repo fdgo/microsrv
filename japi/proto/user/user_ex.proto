@@ -1,0 +1,249 @@
+syntax = "proto3";
+
+package user;
+
+//message GetBackUerInfoInput {
+//}
+//message GetChannelInfoInput {
+//}
+//message GetRoleInfoInput {
+//}
+//
+//message BackLoginInput{
+//    string back_name=1;
+//    string password=2;
+//}
+//message AddAccessInput {
+//    string acs_name = 1;
+//    string acs_tag = 2;
+//}
+//message DeleteAccessInput {
+//    string acs_name = 1;
+//    string acs_tag = 2;
+//}
+//message GetAccessListInput {
+//}
+//message GetRoleListInput {
+//}
+//message AddRoleInput {
+//    string role_name = 1;
+//}
+//message EditRoleInput {
+//    string rolename_old = 1;
+//    string rolename_new = 2;
+//}
+//message DeleteRoleInput {
+//    string rolename = 1;
+//}
+//message AddUserInput {
+//    string real_name = 1;
+//    int32 gender = 2;
+//    int32 age = 3;
+//    string id_card = 4;
+//    string mobile = 5;
+//    string address = 6;
+//    string role_name = 7;
+//    string user_name = 8;
+//    string password = 9;
+//    string nick_name = 10;
+//    string avatar = 11;
+//    int32 channel_id = 12;
+//    string last_login = 13;
+//    int32 status = 14;
+//}
+//message DelUserInput {
+//    string real_name = 1;
+//    string mobile = 2;
+//    string user_name = 3;
+//    string nick_name = 4;
+//    int32 status = 5;
+//}
+message CommonOutput {
+    int32 http_code = 1;
+    int32 code = 2;
+    string msg = 3;
+    string detail = 4;
+    bytes data = 5;
+}
+//**********************************************************
+message MultiLoginMobileInput {
+    string mobile = 1;
+    string code = 2;
+}
+//**********************************************************
+message SingleLoginGuestInput {
+    string device_id = 1;
+    string device_type = 2;
+    int32 channel = 3;
+}
+message SingleLoginMobileInput {
+    int32 channel = 3;
+    string mobile = 4;
+    string code = 5;
+}
+message SingleLoginAccountInput {
+    int32 channel = 3;
+    string account_id = 4;
+    string pwd = 5;
+}
+//******************手机号注册**********************************
+message SingleRegistMobileInput {
+    string device_id = 1;
+    string mobile = 2;
+    string code = 3;
+    int32 ver = 4;
+    int32 channel = 5;
+    string type = 6;
+    string pid = 7;
+    string password = 8;
+    int32 timediff = 9;
+}
+//******************账号密码注册********************
+message SingleRegistAccountInput {
+    string device_id = 1;
+    string account = 2;
+    string password = 3;
+    int32 ver = 4;
+    int32 channel = 5;
+    string type = 6;
+    string pid = 7;
+}
+//******************快速注册********************
+message SingleRegistQuickInput {
+    string device_id = 1;
+    int32 ver = 2;
+    int32 channel = 3;
+    string type = 4;
+    string pid = 5;
+}
+
+//-----------------------------------------------
+//message LoginInput {
+//    string device_id = 1;
+//    string devicesn = 2;
+//    string account = 3;
+//    string pwd = 4;
+//    string ver = 5;
+//    string type = 6;
+//    string pid = 7;
+//    string mobile = 8;
+//    string code = 9;
+//    int32 timediff = 10;
+//    int32 login_type = 11;
+//    int32 channel = 12;
+//    string clientip = 13;
+//}
+////-----------------------------------------------
+//message ActiveAccountInput {
+//    string device_id = 1;
+//    string imei = 2;
+//    string imei2 = 3;
+//    string mac = 4;
+//    string androidid = 5;
+//    string idfa = 6;
+//    int32 os = 7;
+//    int32 channel = 8;
+//}
+////--------------------------------------------------
+//message DeviceIdInput {
+//    string mobile = 1;
+//}
+////---------------------------------------------------
+//message BindAccount {
+//    string account_id = 1;
+//    string level = 2;
+//    string exp = 3;
+//    string nickname = 4;
+//    string avatar = 5;
+//    string vip = 6;
+//    string vip_validity_time = 7;
+//    string mycoin = 8;
+//    string bind_phone = 9;
+//    string bind_email = 10;
+//    int32 stage = 11;
+//    int32 series = 12;
+//}
+//
+////**********************6.账号密码登录（新接口，改devicelogin）****************
+//message DeviceLoginInput {
+//    string device_id = 1;
+//    string account = 2;
+//    string password = 3;
+//    int32 ver = 4;
+//    int32 channel = 5;
+//    string type = 6;
+//    string pid = 7;
+//}
+////*************************
+//
+//message UpdatePwdByMobileInput {
+//    string deviceid = 1;
+//    string mobile = 2;
+//    string password = 3;
+//    string code = 4;
+//}
+//message UpdatePwdByIDcardInput {
+//    string deviceid = 1;
+//    string account_id = 2;
+//    string password = 3;
+//    string name = 4;
+//    string idcard = 5;
+//}
+//message BindIDcardInput {
+//    string deviceid = 1;
+//    string account_id = 2;
+//    string name = 3;
+//    string idcard = 4;
+//}
+////-------------------------------------
+//message BindMobileInput {
+//    string deviceid = 1;
+//    string account_id = 2;
+//    string mobile = 3;
+//    string code = 4;
+//}
+////-------------------------------------
+//message VerifyIdcardInput {
+//    string deviceid = 1;
+//    string account_id = 2;
+//    string name = 3;
+//    string idcard = 4;
+//}
+////--------------------------------------
+//message GetCustomerInput {
+//    string deviceid = 1;
+//    string game_id = 2;
+//}
+////--------------------------------------
+//message PayLogInput {
+//    string deviceid = 1;
+//    string token = 2;
+//    string devicesn = 3;
+//}
+////--------------------------------------
+//message CdKeyListInput {
+//    string deviceid = 1;
+//    string token = 2;
+//    string devicesn = 3;
+//    string user_id = 4;
+//    string game_id = 5;
+//    int32 channel = 6;
+//}
+////-----------------------------------
+//message CdKeyInfoInput {
+//    string deviceid = 1;
+//    string token = 2;
+//    string devicesn = 3;
+//    string user_id = 4;
+//    string game_id = 5;
+//    string cdkey_id = 6;
+//}
+////--------------------------------------
+//message CdKeyMyInput {
+//    string deviceid = 1;
+//    string token = 2;
+//    string devicesn = 3;
+//    string user_id = 4;
+//    string game_id = 5;
+//    int32 channel = 6;
+//}

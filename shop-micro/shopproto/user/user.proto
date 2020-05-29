@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package shop.srv.shopproto;
+
+// StarMaker 用户信息
+message UserInfo {
+    string userId = 1;
+    string nickname = 2;
+    string realName = 3;
+    string sex = 4;
+    string avatar = 5;
+    string remark = 6;
+    string isRecommend = 7;
+    string recommendCode = 8;
+    int64 duration = 9;
+    int32 integral = 10;
+    int32 commission = 11;
+    string status = 12;
+    bool isBindWx = 13;
+    bool isBindPhone = 14;
+}
+

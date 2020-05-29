@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package jz.micro.jzback.srv.base;
+import "base_ex.proto";
+
+
+service Base {
+    rpc SendMobileCode (SendMobileCodeIn) returns (CommonOutput) {
+    }
+    rpc IsMobileCodeOk (IsMobileCodeOkIn) returns (CommonOutput) {
+    }
+}

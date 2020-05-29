@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package jz.micro.jzback.srv.base;
+
+message CommonOutput {
+    int32 http_code = 1;
+    int32 code = 2;
+    string msg = 3;
+    string detail = 4;
+    bytes data = 5;
+}
+//------------------发送验证码-----------------
+message SendMobileCodeIn {
+    string mobile = 1;
+    int32 times = 2;
+    int64 timediff = 3;
+}
+//------------------get code -------------------
+message IsMobileCodeOkIn {
+    string mobile = 1;
+    string code =2;
+    int32 timediff = 3;
+}

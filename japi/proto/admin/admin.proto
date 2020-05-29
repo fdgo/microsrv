@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package jz.micro.jzback.srv.admin;
+
+import "admin_ex.proto";
+
+service Admin {
+
+}
+
