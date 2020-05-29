@@ -1,0 +1,3 @@
+time="2020-04-26 16:54:40.233" level=info msg="logger init (logger.InitLog:logger.go:55)"
+time="2020-04-26 16:55:11.065" level=info msg="logger init (logger.InitLog:logger.go:55)"
+[90m[2020-04-26 16:55:49.933][0m [32m INFO[0m logger init (logger.InitLog:logger.go:55)

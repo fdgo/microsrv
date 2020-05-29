@@ -1,0 +1,183 @@
+syntax = "proto3";
+
+package ds.srv.user;
+
+service User {
+    rpc Regist (RegistIn) returns (CommonOut) {
+    }
+    rpc Login (LoginIn) returns (CommonOut) {
+    }
+    rpc ModifyBasicPwd (ModifyBasicPwdIn) returns (CommonOut) {} //忘记密码
+
+    rpc ModifyLoginPwd (ModifyLoginPwdIn) returns (CommonOut){} //修改登陆密码
+
+    rpc ModifyPayPwd (ModifyPayPwdIn) returns (CommonOut) {
+    }
+    rpc SetPaypwd (SetPaypwdIn) returns (CommonOut) {
+    }
+    rpc GetMemberUserAgent (GetMemberUserAgentIn) returns (CommonOut) {
+    }
+    rpc ConnectUs (ConnectUsIn) returns (CommonOut) {
+    }
+    rpc Stream (stream WsIn) returns (stream CommonOut) {
+    }
+    rpc ServerStream (WsIn) returns (stream CommonOut) {
+    }
+    rpc ExchangeRate (ExchangeRateIn) returns (CommonOut) {
+    }
+    rpc MemberDeposit (MemberDepositIn) returns (CommonOut) {
+    }
+    rpc OnlinePay (OnlinePayIn) returns (CommonOut) {
+    }
+    rpc MemberDepositLog (MemberDepositLogIn) returns (CommonOut) {
+    }
+    rpc MemerClassSet (MemerClassSetIn) returns (CommonOut) {
+    }
+    rpc AgentClassSet (AgentClassSetIn) returns (CommonOut) {
+    }
+    rpc MemberUsdtRecharge (MemberUsdtRechargeIn) returns (CommonOut) {
+    }
+}
+/*********************************/
+message SetPaypwdIn {
+    string uuid = 1;
+    string mobile = 2;
+    string paypwd = 3;
+    string vfcode = 4;
+}
+message WsIn {
+    string msg = 1;
+}
+message CommonOut {
+    int32 httpcode = 1;
+    int32 innercode = 2;
+    string clientmsg = 3;
+    string innermsg = 4;
+    bytes data = 5;
+}
+/*********************************/
+message RegistIn {
+    string invcodeagent = 1;
+    string verifycode = 2;
+    string mobile = 3;
+    string pwd = 4;
+    string nickname = 5;
+    string ClientIp = 6;
+}
+/*********************************/
+message LoginIn {
+    string mobile = 1;
+    string mobidecode = 2;
+    string pwd = 3;
+    string clientIp = 4;
+    string type = 5;
+}
+/*********************************/
+message ModifyBasicPwdIn {
+    string uuid = 1;
+    string tag = 2;
+    string content = 3;
+    string mobile = 4;
+    string vfcode = 5;
+}
+message ModifyLoginPwdIn {
+    string uuid = 1;
+    string mobile = 2;
+    string oldpwd = 3;
+    string newpwd = 4;
+}
+message ModifyPayPwdIn {
+    string uuid = 1;
+    string mobile = 2;
+    string newpwd = 3;
+    string vfcode = 4;
+}
+/*********************************/
+message GetMemberUserAgentIn {
+    string uuid = 1;
+}
+/*********************************/
+message ConnectUsIn {
+}
+/*********************************/
+message ExchangeRateIn {
+}
+message MemberDepositIn {
+    string uuid = 1;
+    string mobile = 2;
+    string invcode_self = 3;
+    string invcode_agent = 4;
+    int32 deposit_type = 5;
+    string deposit_name = 6;
+    float deposit_num = 7;
+    string addressin = 8;
+    string addressout = 9;
+}
+message OnlinePayIn {
+    string uuid = 1;
+    string mobile = 2;
+    string srcId = 3;
+    string invcode_self = 4;
+    string invcode_agent = 5;
+    int32 deposit_type = 6;
+    string deposit_name = 7;
+    float deposit_num = 8;
+    string addressin = 9;
+    string addressout = 10;
+}
+message MemberDepositLogIn {
+    string uuid = 1;
+    string mobile = 2;
+    string type_name = 3;
+    int32 type_tag = 4;
+    int32 page_size = 5;
+    int32 index = 6;
+}
+message MemerClassSetIn {
+    float money1 = 1;
+    float money2 = 2;
+    float money3 = 3;
+    float money4 = 4;
+    float money5 = 5;
+    int32 tag1 = 6;
+    int32 tag2 = 7;
+    int32 tag3 = 8;
+    int32 tag4 = 9;
+    int32 tag5 = 10;
+    string tagex1 = 11;
+    string tagex2 = 12;
+    string tagex3 = 13;
+    string tagex4 = 14;
+    string tagex5 = 15;
+    string memname1 = 16;
+    string memname2 = 17;
+    string memname3 = 18;
+    string memname4 = 19;
+    string memname5 = 20;
+}
+message AgentClassSetIn {
+    float money1 = 1;
+    float money2 = 2;
+    float money3 = 3;
+    float money4 = 4;
+    float money5 = 5;
+    int32 tag1 = 6;
+    int32 tag2 = 7;
+    int32 tag3 = 8;
+    int32 tag4 = 9;
+    int32 tag5 = 10;
+    string tagex1 = 11;
+    string tagex2 = 12;
+    string tagex3 = 13;
+    string tagex4 = 14;
+    string tagex5 = 15;
+    string agentname1 = 16;
+    string agentname2 = 17;
+    string agentname3 = 18;
+    string agentname4 = 19;
+    string agentname5 = 20;
+}
+message MemberUsdtRechargeIn {
+    string uuid = 1;
+    float amount = 2;
+}

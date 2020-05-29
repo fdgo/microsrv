@@ -1,0 +1,98 @@
+micro:
+  consul:
+    enabled: true
+    host: 127.0.0.1:8500
+  mysql:
+    url: root:000000@tcp(192.168.163.133:3306)/ds?charset=utf8&parseTime=True&loc=Local
+    maxIdleConnection: 100
+    maxOpenConnection: 130
+  redis:
+    enabled: true
+    conn: 127.0.0.1:6379
+    dbNum: 8
+    password: 
+    timeout: 3000
+    sentinel:
+      enabled: false
+      master: bookMaster
+      nodes: 127.0.0.1:16379,127.0.0.1:26379,127.0.0.1:36379
+  rediscluster:
+    ip: 192.168.163.133:6379,192.168.163.133:6379,192.168.163.133:6379,192.168.163.133:6379,192.168.163.133:6379,192.168.163.133:6379
+  jwt:
+    secretKey: W6VjDud2W1kMG3BicbMNlGgI4ZfcoHtMGLWr
+    exptime: 30
+  gateway:
+    name: ds.srv.gateway
+    address: 127.0.0.1
+    port: 9040
+  user_srv:
+    name: ds.srv.user
+    address: 127.0.0.1
+    port: 9050
+  message_srv:
+    name: ds.srv.message
+    address: 127.0.0.1
+    port: 9070
+  branch_srv:
+    name: ds.srv.branch
+    address: 127.0.0.1
+    port: 9080
+  wechatpay:
+    appId: xxxxxxx
+    mchId: xxxxxx
+    apiKey: xxxxxxx
+    partnerId: xxxx
+    callBackURL: xxxxx
+  alipay:
+    appId: xxxxx
+    priKey: xxxx
+    callBackURL: xxxxx
+  aioss:
+    accesskeyId: LTAI4GK26WRfRnHU66Df3uJX
+    accesskeySecret: ebwLCoFDclPv3FJte1qf37Va9Rx0jK
+    bucketName: destest
+    endPoint: oss-ap-southeast-1.aliyuncs.com
+  memberclass:
+    member1Money: 1000
+    member2Money: 5000
+    member3Money: 10000
+    member4Money: 30000
+    member5Money: 50000
+    mem1Tag: 1
+    mem2Tag: 2
+    mem3Tag: 3
+    mem4Tag: 4
+    mem5Tag: 5
+    mem1Tagex: "V1"
+    mem2Tagex: "V2"
+    mem3Tagex: "V3"
+    mem4Tagex: "V4"
+    mem5Tagex: "V5"
+    mem1Name: "普通卡"
+    mem2Name: "铜卡"
+    mem3Name: "银卡"
+    mem4Name: "金卡"
+    mem5Name: "钻石卡"
+  agentclass:
+    agent1Money: 30000
+    agent2Money: 90000
+    agent3Money: 270000
+    agent4Money: 810000
+    agent5Money: 2430000
+    agent1Tag: 1
+    agent2Tag: 2
+    agent3Tag: 3
+    agent4Tag: 4
+    agent5Tag: 5
+    agent1Tagex: "D1"
+    agent2Tagex: "D2"
+    agent3Tagex: "D3"
+    agent4Tagex: "D4"
+    agent5Tagex: "D5"
+    agent1Name: "代理合伙人"
+    agent2Name: "高级合伙人"
+    agent3Name: "城市合伙人"
+    agent4Name: "区域合伙人"
+    agent5Name: "全球合伙人"
+  exchangerate:
+    address: http://web.juhe.cn:8080/finance/exchange/rmbquot?key=f908c1e3a7495faf29aafa6006dcd11a

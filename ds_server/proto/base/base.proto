@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package ds.srv.base;
+
+service Base {
+  rpc VfCode (VfCodeIn) returns (CommonOut) {}
+}
+/*********************************/
+message VfCodeIn {
+  string mobile =1;
+}
+/*********************************/
+message CommonOut {
+  int32 httpcode = 1;
+  int32 code = 2;
+  string msg = 3;
+  string innermsg = 4;
+  bytes data = 5;
+}
+/*********************************/

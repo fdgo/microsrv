@@ -1,0 +1,100 @@
+
+syntax = "proto3";
+
+package ds.srv.mall;
+
+message productByID  {
+	int64	ID  =1;
+  string lat1 =2;
+  string lng1 =3;
+}
+
+message requestID  {
+	int64	ID  =1;
+}
+
+
+message requestAddressID  {
+	string	UserID  =1;
+}
+
+message response {
+  bytes  data = 1;
+  int32 Count = 2;
+}
+
+message selectProductRequest {
+  string ProductName =1;
+  int64 BranchID  =2;
+  string BranchName =3;
+  int32 ProductType =4;
+  string Remark =5;
+  int32 IsOnSale =6  ;
+  int32 PageSize =7;
+  int32 PageNum =8;
+  int32 IsRecommend =9  ;
+}
+
+
+message createAddressRequest {
+  string UserAccount =1;
+  string UserID  =2;
+  string UserAlias =3;
+  string Province =4;
+  string City =5;
+  string Aera =6  ;
+  string Address =7;
+  string Tel =8;
+  int32 Sex =9  ;
+  int32 Label =10  ;
+  string TelName =11  ;
+}
+
+
+
+message createOrderRequest  {
+	string UserID  =1;
+	int64	ProductID  =2;
+  int32 ProductNum =3;
+  int64 AddressID =4;
+}
+
+message selectOrderRequest {
+	string	UserID  =1;
+  int32	OrderState  =2;
+  int32 PageSize =3;
+  int32 PageNum =4;
+  string CreateStartTime =5;
+  string CreateEndTime =6;
+  string CompleteStartTime =7;
+  string CompleteEndTime =8;
+}
+
+message payOrderRequest {
+	string	UserID  =1;
+  int64	OrderID  =2;
+  string TransactionPassword =3;
+}
+
+
+
+message responseID {
+  bytes  data = 1;
+  int32 Count = 2;
+}
+
+
+service mall {
+    rpc GetProductByID (productByID) returns (response){}
+    rpc GetProductDetailByID (productByID) returns (response){}
+    rpc SelectProducts (selectProductRequest) returns (response) {}
+    rpc CreateAddress (createAddressRequest) returns (response) {}
+    rpc SearchAddress (requestAddressID) returns (response) {}
+    rpc CreateOrder (createOrderRequest) returns (response) {}
+    rpc SearchOrder (selectOrderRequest) returns (response) {}
+    rpc PayOrder (payOrderRequest) returns (response) {}
+    rpc GetOrderByID (productByID) returns (response) {}
+
+}
+
+

@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package ds.srv.message;
+
+message selectMessageRequest {
+  string MessageType =1;
+	int32 UserType  =2;
+	string UserID =3  ;
+	int32 PageSize =4;
+	int32 PageNum =5;
+}
+
+message response {
+  bytes  data = 1;
+  int32 Count = 2;
+}
+
+
+message createRequest  {
+   bytes  data = 1;
+}
+
+
+
+message idRequest  {
+	int64	ID  =1;
+}
+
+
+message idResponse {
+	int64	ID  =1;
+}
+
+message MessageRespone  {
+  string Results = 1;
+}
+
+
+message UpdatMessageContentRequest {
+  int64  MessageID =1;
+  string Title =2;
+  string Picture =3;
+  string Content =4;
+  string URL =5;
+} 
+
+
+message CreatAdRequest {
+  string  Name =1;
+  int64 MessageType =2;
+} 
+
+
+
+message urlRequest  {
+	int64	MessageID  =1;
+  string url =2;
+}
+
+
+message selectBannerRequest {
+	int32 BannerType  =2;
+}
+
+
+service Message {
+    rpc GetMessageByID (idRequest) returns (response){}
+    rpc GetMessageDetailByID (idRequest) returns (response){}
+    rpc SelectMessage (selectMessageRequest) returns (response) {}
+    rpc CreateMessage (createRequest) returns (response){}
+    rpc CreateMessageDetail (createRequest) returns (response){}
+    rpc GetMessageID (idRequest) returns (idResponse){}
+    rpc CreateMessageUrl (urlRequest) returns (response){}
+    rpc SearchBanner (selectBannerRequest) returns (response){}
+
+}
+

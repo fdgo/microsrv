@@ -1,0 +1,579 @@
+{
+	"info": {
+		"_postman_id": "9568ae1e-73d5-436c-8e96-bd4026f983a7",
+		"name": "dev",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "登陆127.0.0.1:8029/api/v1/user/login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "aertartert",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"type\":\"1\",\"mobile\":\"13121391353\",\"pwd\":\"666aaa\",\"vfcode\":\"777777\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8030/api/v1/user/login",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8030",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "注册127.0.0.1:8029/api/v1/user/regist",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"invcodeagent\":\"123456\",\"verifycode\":\"782209\",\"mobile\":\"13121391353\",\"pwd\":\"123456\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8030/api/v1/user/regist",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8030",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"regist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "会员等级设置127.0.0.1:8029/api/v1/user/memclass/set",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"money1\":1000,\"money2\":5000,\"money3\":10000,\"money4\":30000,\"money5\":50000}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8029/api/v1/user/memclass/set",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8029",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"memclass",
+						"set"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "联系公司127.0.0.1:8029/api/v1/user/con",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8029/api/v1/user/con",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8029",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"con"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "用户信息127.0.0.1:8029/api/v1/user/info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiVG1haVJHN1A4dCIsIm1vYmlsZSI6IjEzMTIxMzkxMzUzIiwidXNlcm5hbWUiOiIiLCJpbnZjb2RlYWdlbnQiOiIxMjM0NTYiLCJJbnZjb2Rlc2VsZiI6IjYyNzc5MCIsImV4cCI6MTU5MTUxMzYzMCwiaXNzIjoiZHMuc3J2LnVzZXIifQ.qh7k7-_Tr9bjg7gIO7N_zOKKmcASuYT6LI9gfbQr0qQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8030/api/v1/user/info",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8030",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取汇率127.0.0.1:8029/api/v1/member/exrate",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNEhpMXhwYVlMQyIsIm1vYmlsZSI6IjEzMDAwMDAwMDAwIiwidXNlcm5hbWUiOiIiLCJpbnZjb2RlYWdlbnQiOiIxMjM0NTYiLCJJbnZjb2Rlc2VsZiI6IjY1MTU4NCIsImV4cCI6MTU5MTE0MjA0NiwiaXNzIjoiZHMuc3J2LnVzZXIifQ.hrYe9eC0O17p3Ruf_qEZrS0i6101rD6t55jhbXfkq3w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8029/api/v1/member/exrate",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8029",
+					"path": [
+						"api",
+						"v1",
+						"member",
+						"exrate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "充值127.0.0.1:8029/api/v1/member/deposit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiVG1haVJHN1A4dCIsIm1vYmlsZSI6IjEzMTIxMzkxMzUzIiwidXNlcm5hbWUiOiIiLCJpbnZjb2RlYWdlbnQiOiIxMjM0NTYiLCJJbnZjb2Rlc2VsZiI6IjYyNzc5MCIsImV4cCI6MTU5MTQ0MDcwMSwiaXNzIjoiZHMuc3J2LnVzZXIifQ.Ro6IpaqWHPLwvxh462H5eLSsVMaekktrdmm1kaFY5TI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"mobile\":\"13121391353\",\"deposittype\":1,\"depositname\":\"ali_pay\",\"depositnum\":220000}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8029/api/v1/member/deposit ",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8029",
+					"path": [
+						"api",
+						"v1",
+						"member",
+						"deposit "
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "在线支付127.0.0.1:8029/api/v1/member/onlinepay",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiVG1haVJHN1A4dCIsIm1vYmlsZSI6IjEzMTIxMzkxMzUzIiwidXNlcm5hbWUiOiIiLCJpbnZjb2RlYWdlbnQiOiIxMjM0NTYiLCJJbnZjb2Rlc2VsZiI6IjYyNzc5MCIsImV4cCI6MTU5MTQ0MDcwMSwiaXNzIjoiZHMuc3J2LnVzZXIifQ.Ro6IpaqWHPLwvxh462H5eLSsVMaekktrdmm1kaFY5TI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"srcid\":\"abcdefg12345\",\"deposittype\":3,\"depositname\":\"USDT\",\"depositnum\":30000}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8029/api/v1/member/onlinepay",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8029",
+					"path": [
+						"api",
+						"v1",
+						"member",
+						"onlinepay"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "充值消费记录127.0.0.1:8029/api/v1/member/depositlog?type=ali_pay",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiVG1haVJHN1A4dCIsIm1vYmlsZSI6IjEzMTIxMzkxMzUzIiwidXNlcm5hbWUiOiIiLCJpbnZjb2RlYWdlbnQiOiIxMjM0NTYiLCJJbnZjb2Rlc2VsZiI6IjYyNzc5MCIsImV4cCI6MTU5MTQ0NDg2NywiaXNzIjoiZHMuc3J2LnVzZXIifQ.eAhiO7DFdm8mnIJrb1Uz0FNQYdjZehyF8Q1yXDefd1Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8030/api/v1/member/depositlog?type=all&pagesize=5&index=0",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8030",
+					"path": [
+						"api",
+						"v1",
+						"member",
+						"depositlog"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "all"
+						},
+						{
+							"key": "pagesize",
+							"value": "5"
+						},
+						{
+							"key": "index",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "基础信息修改（包括忘记密码接口）127.0.0.1:8029/api/v1/user/basic/modify",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"tag\":\"pwd\",\"mobile\":\"13121391353\",\"vfcode\":\"782209\",\"content\":\"777kkk\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8030/api/v1/user/basicpwd/modify",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8030",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"basicpwd",
+						"modify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "支付密码修改127.0.0.1:8029/api/v1/user/paypwd/modify",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiVG1haVJHN1A4dCIsIm1vYmlsZSI6IjEzMTIxMzkxMzUzIiwidXNlcm5hbWUiOiIiLCJpbnZjb2RlYWdlbnQiOiIxMjM0NTYiLCJJbnZjb2Rlc2VsZiI6IjYyNzc5MCIsImV4cCI6MTU5MTUwMTQxMywiaXNzIjoiZHMuc3J2LnVzZXIifQ.667-KfsLAo0tusIqUw1XT3hwySV47CK1MR75kbm4ZJE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"mobile\":\"13121391353\",\"vfcode\":\"638496\",\"newpwd\":\"111111\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8030/api/v1/user/paypwd/modify",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8030",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"paypwd",
+						"modify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "会员等级设置127.0.0.1:8029/api/v1/user/agentclass/set",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"money1\":30000,\"money2\":90000,\"money3\":270000,\"money4\":810000,\"money5\":2430000}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8029/api/v1/user/agentclass/set",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8029",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"agentclass",
+						"set"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "发送验证码127.0.0.1:8029/api/v1/base/mobilecode",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"mobile\":\"13121391353\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8030/api/v1/base/mobilecode",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8030",
+					"path": [
+						"api",
+						"v1",
+						"base",
+						"mobilecode"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "设置支付秘密127.0.0.1:8029/api/v1/user/paypwd/set",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiVG1haVJHN1A4dCIsIm1vYmlsZSI6IjEzMTIxMzkxMzUzIiwidXNlcm5hbWUiOiIiLCJpbnZjb2RlYWdlbnQiOiIxMjM0NTYiLCJJbnZjb2Rlc2VsZiI6IjYyNzc5MCIsImV4cCI6MTU5MTUxMzYzMCwiaXNzIjoiZHMuc3J2LnVzZXIifQ.qh7k7-_Tr9bjg7gIO7N_zOKKmcASuYT6LI9gfbQr0qQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"mobile\":\"13121391353\",\"paypwd\":\"625625\",\"vfcode\":\"638496\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8030/api/v1/user/paypwd/set",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8030",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"paypwd",
+						"set"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "修改登陆密码127.0.0.1:8030/api/v1/user/loginpwd/modify",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiWkFSbmo5SldZMyIsIm1vYmlsZSI6IjEzMTIxMzkxMzUzIiwidXNlcm5hbWUiOiIiLCJpbnZjb2RlYWdlbnQiOiIxMjM0NTYiLCJJbnZjb2Rlc2VsZiI6IjYyOTAzNiIsImV4cCI6MTU5MTUxOTY2MywiaXNzIjoiZHMuc3J2LnVzZXIifQ.75ZTJtSuHlzXiVL3Ri36RqboAnJm2hK1MvpqJ2uLh4k",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"oldpwd\":\"123456\",\"newpwd\":\"999999\",\"mobile\":\"13121391353\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8030/api/v1/user/loginpwd/modify",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8030",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"loginpwd",
+						"modify"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

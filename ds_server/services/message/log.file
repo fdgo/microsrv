@@ -1,0 +1,5 @@
+nohup: ignoring input
+read log config failed, err = open ../config/log.json: no such file or directory
+will use default log config
+time="2020-04-26 16:55:11.065" level=info msg="logger init (logger.InitLog:logger.go:55)"
+2020-04-26 16:55:11.075908 I | error loading source grpc: rpc error: code = Unavailable desc = all SubConns are in TransientFailure, latest connection error: connection error: desc = "transport: Error while dialing dial tcp :8208: connect: connection refused"

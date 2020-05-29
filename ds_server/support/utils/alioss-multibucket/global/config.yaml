@@ -1,0 +1,18 @@
+sqlconfig:
+  redisrv:
+    server: 120.27.239.127:6379
+  mysqlsrv:
+    server: 120.27.239.127:3306
+    user: root
+    password: 000000
+    db: go-db
+  aliosssrv:
+    endpoint: xxxxxx.aliyuncs.com
+    accessKeyID: yyyyyyyyy
+    accessKeySecret: zzzzzzzz
+    bucketName: ttttttttttt
+  qiniuosssrv:
+    endpoint: xxxxxx.yyyyyyy.com
+    accessKey: 5555555
+    secretKey: 7777777
+    bucket: 8888888888

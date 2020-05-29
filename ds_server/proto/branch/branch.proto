@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package ds.srv.branch;
+
+message selectBranchRequest {
+	int32  PageSize =1;
+	int32  PageNum =2;
+  string  Name =3;
+  string Latitude =4;
+  string Longitude =5;
+  string GeoHashCode=6;
+}
+
+message selectBranchDynamicsRequest {
+	int32  PageSize =1;
+	int32  PageNum =2;
+  int64  BranchID =3;
+}
+
+
+message response {
+  bytes  data = 1;
+  int32 Count = 2;
+}
+
+
+message createRequest  {
+   bytes  data = 1;
+}
+
+
+
+message idRequest  {
+	int64	ID  =1;
+}
+
+
+message BranchRespone  {
+  string Results = 1;
+}
+
+
+
+message urlRequest  {
+	int64	BranchDynamicID  =1;
+  string url =2;
+}
+
+message createBranchDynamicRequest  {
+	  int64 BranchID  =1;
+		int64 BranchDynamicID  =2;
+		string Title   =3;
+	  string Name   =4;
+		string Content   =5;
+}
+
+message idResponse {
+	int64	ID  =1;
+}
+
+message addResponse {
+	string	Address  =1;
+}
+
+service Branch {
+    rpc GetBranchByID (idRequest) returns (response){}
+    rpc GetBranchDynamicByID (idRequest) returns (response){}
+    rpc SelectBranch (selectBranchRequest) returns (response) {}
+    rpc CreateBranch (createRequest) returns (response){}
+    rpc CreateBranchDynamic (createBranchDynamicRequest) returns (response){}
+    rpc CreateBranchUrl (urlRequest) returns (response){}
+    rpc GetBranchID (idRequest) returns (idResponse){}
+    rpc SelectBranchDynamics (selectBranchDynamicsRequest) returns (response) {}
+    rpc GetAddress (idRequest) returns (addResponse){}
+
+}
+
+
