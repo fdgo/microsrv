@@ -2,7 +2,7 @@ package handler
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/wangmhgo/microservice-project/shop-micro/helper"
+	"shop-micro/helper"
 	"time"
 )
 

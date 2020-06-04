@@ -1,3 +1,3 @@
-FROM alpine:3.2
+FROM centos
 ADD home-service /home-service
 ENTRYPOINT [ "/home-service"]

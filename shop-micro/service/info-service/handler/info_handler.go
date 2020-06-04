@@ -3,8 +3,8 @@ package handler
 import (
 	"context"
 	"log"
-	pb "github.com/wangmhgo/microservice-project/shop-micro/service/info-service/proto"
-	"github.com/wangmhgo/microservice-project/shop-micro/shopproto/video"
+	pb "shop-micro/service/info-service/proto"
+	"shop-micro/shopproto/video"
 )
 
 type InfoHandler struct {

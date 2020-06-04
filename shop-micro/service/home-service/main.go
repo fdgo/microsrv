@@ -2,11 +2,11 @@ package main
 
 import (
 	"github.com/micro/go-micro"
-	"github.com/wangmhgo/microservice-project/shop-micro/helper"
-	"github.com/wangmhgo/microservice-project/shop-micro/hystrix"
-	"github.com/wangmhgo/microservice-project/shop-micro/service/home-service/config"
-	"github.com/wangmhgo/microservice-project/shop-micro/service/home-service/handler"
-	pb "github.com/wangmhgo/microservice-project/shop-micro/service/home-service/proto"
+	"shop-micro/helper"
+	"shop-micro/hystrix"
+	"shop-micro/service/home-service/config"
+	"shop-micro/service/home-service/handler"
+	pb "shop-micro/service/home-service/proto"
 	"log"
 	"time"
 )

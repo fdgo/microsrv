@@ -3,8 +3,8 @@ package client
 import (
 	"context"
 	"github.com/micro/go-micro/client"
-	"github.com/wangmhgo/microservice-project/shop-micro/service/home-service/config"
-	homePb "github.com/wangmhgo/microservice-project/shop-micro/service/home-service/proto"
+	"shop-micro/service/home-service/config"
+	homePb "shop-micro/service/home-service/proto"
 )
 
 type HomeClient struct {

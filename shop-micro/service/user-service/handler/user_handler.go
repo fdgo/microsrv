@@ -2,8 +2,8 @@ package handler
 
 import (
 	"context"
-	"github.com/wangmhgo/microservice-project/shop-micro/helper"
-	"github.com/wangmhgo/microservice-project/shop-micro/service/user-service/proto"
+	"shop-micro/helper"
+	"shop-micro/service/user-service/proto"
 )
 
 type UserHandler struct {

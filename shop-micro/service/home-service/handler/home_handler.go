@@ -2,7 +2,7 @@ package handler
 
 import (
 	"context"
-	pb "github.com/wangmhgo/microservice-project/shop-micro/service/home-service/proto"
+	pb "shop-micro/service/home-service/proto"
 	"log"
 )
 

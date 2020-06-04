@@ -5,11 +5,11 @@ package shop.srv.info;
 import "shop-micro/shopproto/news/news.proto";
 import "shop-micro/shopproto/video/video.proto";
 
-import "github.com/gogo/protobuf/gogoproto/gogo.proto";
-option (gogoproto.marshaler_all) = true;
-option (gogoproto.sizer_all) = true;
-option (gogoproto.unmarshaler_all) = true;
-option (gogoproto.goproto_enum_prefix_all) = false;
+//import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+//option (gogoproto.marshaler_all) = true;
+//option (gogoproto.sizer_all) = true;
+//option (gogoproto.unmarshaler_all) = true;
+//option (gogoproto.goproto_enum_prefix_all) = false;
 
 service Info {
     rpc GetCategoryList (request) returns (VideoCategorysResp) {}

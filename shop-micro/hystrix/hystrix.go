@@ -6,7 +6,6 @@ import (
 	"log"
 	"net"
 	"net/http"
-
 	"context"
 )
 
@@ -33,9 +32,9 @@ func NewClientWrapper() client.Wrapper {
 func Configure(names []string) {
 	// overwrite default configure
 	config := hystrix.CommandConfig{
-		Timeout:               2000,
+		Timeout:               3000,
 		MaxConcurrentRequests: 100,
-		ErrorPercentThreshold: 25,
+		ErrorPercentThreshold: 50,
 	}
 	configs := make(map[string]hystrix.CommandConfig)
 	for _, name := range names {

@@ -1,3 +1,3 @@
-FROM alpine:3.2
+FROM centos
 ADD user-service /user-service
 ENTRYPOINT [ "/user-service" ]

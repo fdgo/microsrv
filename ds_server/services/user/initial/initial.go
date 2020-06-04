@@ -84,6 +84,7 @@ func initConsul() registry.Registry {
 		op.Addrs = []string{
 			constex.ConsulCfg.Host,
 		}
+		op.Timeout =  5 * time.Second
 	})
 }
 func initDb() handler.UserHandler {

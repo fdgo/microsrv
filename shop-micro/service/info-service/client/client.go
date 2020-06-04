@@ -4,9 +4,9 @@ import (
 	"context"
 	"github.com/gin-gonic/gin"
 	"github.com/micro/go-micro/client"
-	"github.com/wangmhgo/microservice-project/shop-micro/helper"
-	"github.com/wangmhgo/microservice-project/shop-micro/service/info-service/config"
-	pb "github.com/wangmhgo/microservice-project/shop-micro/service/info-service/proto"
+	"shop-micro/helper"
+	"shop-micro/service/info-service/config"
+	pb "shop-micro/service/info-service/proto"
 )
 
 type InfoClient struct {

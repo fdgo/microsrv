@@ -8,6 +8,7 @@ import (
 	useproto "ds_server/proto/user"
 	"ds_server/support/utils/param"
 	rsp "ds_server/support/utils/rsp"
+	"ds_server/support/utils/trace"
 	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -33,13 +34,22 @@ func Regist(c *gin.Context) {
 		rsp.RespGin(400, 400, "输入有误,请重写输入!", "参数有误", "参数有误", c)
 		return
 	}
+	ctx, ok := trace.ContextWithSpan(c)
+	if !ok {
+		log.Warn("不存在context")
+		c.JSON(200,gin.H{
+			"code":-1,
+			"msg":"不存在context",
+		})
+		return
+	}
 	var rtin useproto.RegistIn
 	rtin.Invcodeagent = in.InvCodeAgent
 	rtin.Mobile = in.Mobile
 	rtin.Pwd = in.Pwd
 	rtin.Verifycode = in.VerifyCode
 	rtin.ClientIp = c.Request.RemoteAddr
-	ret, err := client.UserClient.Regist(c, &rtin)
+	ret, err := client.UserClient.Regist(ctx, &rtin)
 	if err != nil {
 		rsp.RespGin(400, 400, "注册失败!", err.Error(), "注册失败!", c)
 		return

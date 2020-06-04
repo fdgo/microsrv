@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"github.com/garyburd/redigo/redis"
 	"github.com/jinzhu/gorm"
-	"github.com/wangmhgo/microservice-project/shop-micro/helper"
-	pb "github.com/wangmhgo/microservice-project/shop-micro/service/home-service/proto"
+	"shop-micro/helper"
+	pb "shop-micro/service/home-service/proto"
 	"strings"
 )
 

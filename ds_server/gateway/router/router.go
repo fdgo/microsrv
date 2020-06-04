@@ -18,7 +18,6 @@ func Router() *gin.Engine {
 	router.Use(midware.TracerWrapper)
 	router.Use(midware.Cors())
 	router.Use(midware.NoRoute())
-	router.Static("/static", "./static")
 
 	rf := router.Group("/api/v1")
 	rc := rf.Group("base")
@@ -29,7 +28,7 @@ func Router() *gin.Engine {
 	ru := rf.Group("/user")
 	{
 		ru.GET("/ws", user.WebsocketMsg)
-		ru.POST("/regist", user.Regist)
+		ru.POST("/regist", user.Regist) //ContextWithSpan
 		ru.POST("/login", user.Login)
 		ru.POST("/memclass/set", user.MemerClassSet)
 		ru.POST("/agentclass/set", user.AgentClassSet)

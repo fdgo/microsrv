@@ -3,7 +3,7 @@ package handler
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
-	"github.com/wangmhgo/microservice-project/shop-micro/service/user-service/proto"
+	"shop-micro/service/user-service/proto"
 )
 
 func Login(c *gin.Context) (string, bool) {

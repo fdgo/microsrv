@@ -2,8 +2,8 @@ package handler
 
 import (
 	"fmt"
-	"github.com/wangmhgo/microservice-project/shop-micro/helper"
-	"github.com/wangmhgo/microservice-project/shop-micro/service/home-service/proto"
+	"shop-micro/helper"
+	"shop-micro/service/home-service/proto"
 	"testing"
 )
 

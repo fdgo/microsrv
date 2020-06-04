@@ -1,3 +1,3 @@
-FROM alpine:3.2
+FROM centos
 ADD info-service /info-service
 ENTRYPOINT [ "/info-service" ]

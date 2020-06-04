@@ -12,10 +12,10 @@ services:
     environment:
       NET: "host"
       DB_NAME: "mysql"
-      DB_HOST: "mysql"
+      DB_HOST: "192.168.163.133"
       DB_PORT: "3306"
       DB_USER: "root"
-      DB_PASSWORD: "123456"
+      DB_PASSWORD: "000000"
     depends_on:
       - mysql
       - consul
@@ -28,10 +28,10 @@ services:
     environment:
       NET: "host"
       DB_NAME: "mysql"
-      DB_HOST: "mysql"
+      DB_HOST: "192.168.163.133"
       DB_PORT: "3306"
       DB_USER: "root"
-      DB_PASSWORD: "123456"
+      DB_PASSWORD: "000000"
     depends_on:
       - mysql
       - consul
@@ -44,12 +44,12 @@ services:
     environment:
       NET: "host"
       DB_NAME: "mysql"
-      DB_HOST: "mysql"
+      DB_HOST: "192.168.163.133"
       DB_PORT: "3306"
       DB_USER: "root"
-      DB_PASSWORD: "123456"
-      REDIS_ADDR: "redis:6379"
-      REDIS_PWD: ""
+      DB_PASSWORD: "000000"
+      REDIS_ADDR: "127.0.0.1:6379"
+      REDIS_PWD: "000000"
     depends_on:
       - mysql
       - consul
@@ -79,7 +79,7 @@ services:
       - 8302:8302/udp
       - 8400:8400
       - 8500:8500
-      - 53:53/udp
+      - 54:54/udp
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8500"]
       interval: 5s
@@ -92,16 +92,16 @@ services:
       - 5432:5432
 
   mysql:
-    image: cytopia/mysql-8.0
+    image: mysql:8.0.16
     environment:
-      MYSQL_ROOT_PASSWORD: "123456"
+      MYSQL_ROOT_PASSWORD: "000000"
     ports:
       - 3306:3306
 
   redis:
     image: redis
     environment:
-      requirepass: "123456"
+      requirepass: "000000"
     ports:
       - 6379:6379
 

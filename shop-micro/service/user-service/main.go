@@ -3,8 +3,8 @@ package main
 import (
 	"github.com/labstack/gommon/log"
 	"github.com/micro/go-micro"
-	"github.com/wangmhgo/microservice-project/shop-micro/service/user-service/handler"
-	"github.com/wangmhgo/microservice-project/shop-micro/service/user-service/proto"
+	"shop-micro/service/user-service/handler"
+	"shop-micro/service/user-service/proto"
 	"time"
 	_ "github.com/go-sql-driver/mysql"
 )

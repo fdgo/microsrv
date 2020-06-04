@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 	"github.com/json-iterator/go"
-	"github.com/wangmhgo/microservice-project/shop-micro/helper"
-	pb "github.com/wangmhgo/microservice-project/shop-micro/service/info-service/proto"
-	"github.com/wangmhgo/microservice-project/shop-micro/shopproto/video"
+	"shop-micro/helper"
+	pb "shop-micro/service/info-service/proto"
+	"shop-micro/shopproto/video"
 )
 
 type Video struct {

@@ -2,7 +2,7 @@ package handler
 
 import (
 	"github.com/jinzhu/gorm"
-	"github.com/wangmhgo/microservice-project/shop-micro/service/user-service/proto"
+	"shop-micro/service/user-service/proto"
 )
 
 const (

@@ -2,7 +2,7 @@ package handler
 
 import (
 
-	"github.com/wangmhgo/microservice-project/shop-micro/service/home-service/proto"
+	"shop-micro/service/home-service/proto"
 )
 
 func (repo * HomeRepository) FindHomeNavList() ([]*shop_srv_home.HomeNav, error) {

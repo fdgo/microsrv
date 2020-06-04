@@ -3,7 +3,7 @@ package handler
 import (
 	"github.com/gin-gonic/gin"
 	"log"
-	info "github.com/wangmhgo/microservice-project/shop-micro/service/info-service/client"
+	info "shop-micro/service/info-service/client"
 )
 
 const NAME = "shop.srv.video"

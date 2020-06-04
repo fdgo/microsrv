@@ -3,7 +3,7 @@ package handler
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/labstack/gommon/log"
-	home "github.com/wangmhgo/microservice-project/shop-micro/service/home-service/client"
+	home "shop-micro/service/home-service/client"
 )
 
 var (

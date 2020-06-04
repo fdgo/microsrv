@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/labstack/gommon/log"
 	"github.com/micro/go-micro/web"
-	"github.com/wangmhgo/microservice-project/shop-micro/api-gateway/handler"
+	"shop-micro/api-gateway/handler"
 )
 
 const SRV_NAME = "shop.srv.apigateway"
