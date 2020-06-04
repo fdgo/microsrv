@@ -6,6 +6,7 @@ import (
 	"ds_server/support/utils/constex"
 	"ds_server/support/utils/trace"
 	"fmt"
+	"time"
 
 	"github.com/micro/go-log"
 	"github.com/micro/go-micro/registry"
@@ -39,6 +40,7 @@ func NewGateWaysrv() web.Service {
 		op.Addrs = []string{
 			constex.ConsulCfg.Host,
 		}
+		op.Timeout =  5 * time.Second
 	})
 	trace.SetSamplingFrequency(50)
 	t, io, err := trace.NewTracer(constex.SRV_GATAWAY, "localhost:6831")
