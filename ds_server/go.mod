@@ -42,7 +42,7 @@ require (
 	github.com/uber/jaeger-lib v2.2.0+incompatible // indirect
 	golang.org/x/crypto v0.0.0-20191205180655-e7c4368fe9dd
 	golang.org/x/lint v0.0.0-20200302205851-738671d3881b // indirect
-	golang.org/x/net v0.0.0-20191112182307-2180aed22343 // indirect
+	golang.org/x/net v0.0.0-20191112182307-2180aed22343
 	golang.org/x/text v0.3.2
 	golang.org/x/time v0.0.0-20191024005414-555d28b269f0 // indirect
 	google.golang.org/grpc v1.25.1

@@ -18,6 +18,8 @@ func Router() *gin.Engine {
 	router.Use(midware.TracerWrapper)
 	router.Use(midware.Cors())
 	router.Use(midware.NoRoute())
+	router.Use(midware.Limit)
+	router.Use(midware.Recover("gateway"))
 
 	rf := router.Group("/api/v1")
 	rc := rf.Group("base")

@@ -3,11 +3,16 @@ package trace
 import (
 	token "ds_server/support/utils/auth"
 	"ds_server/support/utils/cors"
+	"ds_server/support/utils/limit"
 	"ds_server/support/utils/logex"
 	rsp "ds_server/support/utils/rsp"
 	time_ex "ds_server/support/utils/timex"
 	"ds_server/support/utils/trace"
 	"github.com/gin-gonic/gin"
+	"net/http"
+	"runtime/debug"
+	"strings"
+	"time"
 )
 
 func Log() gin.HandlerFunc {
@@ -28,6 +33,27 @@ func NoRoute() gin.HandlerFunc {
 			ctx.JSON(200, nil)
 		}
 	}
+}
+func Recover( name string ) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		defer func() {
+			if err := recover(); err != nil {
+
+				DebugStack := ""
+				for _, v := range strings.Split(string(debug.Stack()), "\n") {
+					DebugStack += v + "<br>"
+				}
+				str := name + time_ex.GetCurrentTime() +"|"+ c.Request.Host+"|"+c.Request.RequestURI+"|"+c.Request.Method +"|"+  DebugStack +"|"+ c.Request.UserAgent()
+				rtnpkg.GinResponse(500, 500,"系统异常，请联系管理员！","系统异常，请联系管理员！",str, c)
+			}
+		}()
+		c.Next()
+	}
+}
+
+// 中间件，用令牌桶限制请求频率
+func Limit(c *gin.Context) {
+	limit.LimitHandler(c)
 }
 
 func Auth(token *token.JwtToken) gin.HandlerFunc {
