@@ -15,6 +15,7 @@ require (
 	github.com/go-playground/validator/v10 v10.2.0
 	github.com/go-redis/redis v6.15.8+incompatible
 	github.com/go-sql-driver/mysql v1.5.0
+	github.com/go-stack/stack v1.8.0
 	github.com/golang/protobuf v1.4.0
 	github.com/gorilla/websocket v1.4.2
 	github.com/holdno/snowFlakeByGo v0.0.0-20180510033652-d23f8a8cadd7
@@ -29,7 +30,9 @@ require (
 	github.com/micro/go-log v0.1.0
 	github.com/micro/go-micro v1.18.0
 	github.com/micro/go-plugins v1.5.1
+	github.com/olivere/elastic v6.2.32+incompatible
 	github.com/opentracing/opentracing-go v1.1.0
+	github.com/pkg/errors v0.8.1
 	github.com/prometheus/common v0.7.0
 	github.com/rifflock/lfshook v0.0.0-20180920164130-b9218ef580f5
 	github.com/robfig/cron v1.2.0

@@ -17,3 +17,7 @@ func main() {
 		log.Fatalf("run err %v ", err)
 	}
 }
+
+//go get -u -v github.com/oxequa/realize
+
+//realize start

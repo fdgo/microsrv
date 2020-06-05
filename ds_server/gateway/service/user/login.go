@@ -37,9 +37,9 @@ func Regist(c *gin.Context) {
 	ctx, ok := trace.ContextWithSpan(c)
 	if !ok {
 		log.Warn("不存在context")
-		c.JSON(200,gin.H{
-			"code":-1,
-			"msg":"不存在context",
+		c.JSON(200, gin.H{
+			"code": -1,
+			"msg":  "不存在context",
 		})
 		return
 	}
@@ -87,7 +87,7 @@ func Login(c *gin.Context) {
 	json.Unmarshal((*ret).Data, &ret_resp)
 	rsp.RespGin((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, ret_resp, c)
 }
-func ModifyLoginPwd(c *gin.Context)  {
+func ModifyLoginPwd(c *gin.Context) {
 	//wmh
 	defer func() {
 		if err := recover(); err != nil {
@@ -170,7 +170,6 @@ func SetPaypwd(c *gin.Context) {
 		return
 	}
 	rsp.RespGin((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, string((*ret).Data), c)
-
 
 }
 func ModifyPayPwd(c *gin.Context) {

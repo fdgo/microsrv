@@ -37,6 +37,6 @@ func VfCode(c *gin.Context) {
 		rsp.RespGin(400, 400, "注册失败!", err.Error(), ret_resp, c)
 		return
 	}
-	json.Unmarshal((*ret).Data,&ret_resp)
+	json.Unmarshal((*ret).Data, &ret_resp)
 	rsp.RespGin((*ret).Httpcode, (*ret).Code, (*ret).Msg, (*ret).Innermsg, ret_resp, c)
 }

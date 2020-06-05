@@ -77,7 +77,7 @@ func MemberDepositLog(c *gin.Context) {
 		rsp.RespGin((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, ret_resp, c)
 		return
 	}
-	rsp.RespGin(400,400, "充值类型错误!", "充值类型错误!", ret_resp, c)
+	rsp.RespGin(400, 400, "充值类型错误!", "充值类型错误!", ret_resp, c)
 	return
 }
 func MemberDeposit(c *gin.Context) {
@@ -123,7 +123,7 @@ func OnlinePay(c *gin.Context) {
 	}()
 	var in reqmdl.OnlinePay_req
 	if err := c.ShouldBindJSON(&in); err != nil {
-		rsp.RespGin(400,400, err.Error(), err.Error(), ret_resp, c)
+		rsp.RespGin(400, 400, err.Error(), err.Error(), ret_resp, c)
 		return
 	}
 	isok, _ := param.IsParam(in)
@@ -155,7 +155,7 @@ func AgentClassSet(c *gin.Context) {
 	}()
 	var in reqmdl.AgentClassSet_req
 	if err := c.ShouldBindJSON(&in); err != nil {
-		rsp.RespGin(400,400, "输入有误,请重写输入!", "参数有误", "", c)
+		rsp.RespGin(400, 400, "输入有误,请重写输入!", "参数有误", "", c)
 		return
 	}
 	isok, _ := param.IsParam(in)

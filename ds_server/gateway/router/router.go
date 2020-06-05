@@ -35,8 +35,8 @@ func Router() *gin.Engine {
 		ru.POST("/memclass/set", user.MemerClassSet)
 		ru.POST("/agentclass/set", user.AgentClassSet)
 		ru.GET("/con", user.ConnectUs)
-		ru.POST("/loginpwd/modify", user.ModifyLoginPwd)//修改登陆密码
-		ru.POST("/basicpwd/modify", user.ForgetPwd)//忘记密码
+		ru.POST("/loginpwd/modify", user.ModifyLoginPwd) //修改登陆密码
+		ru.POST("/basicpwd/modify", user.ForgetPwd)      //忘记密码
 		rus := ru.Use(midware.Auth(&token.JwtToken{
 			SigningKey: []byte(constex.JwtCfg.SecretKey),
 		}))

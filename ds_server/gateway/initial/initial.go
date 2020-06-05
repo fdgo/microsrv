@@ -40,7 +40,7 @@ func NewGateWaysrv() web.Service {
 		op.Addrs = []string{
 			constex.ConsulCfg.Host,
 		}
-		op.Timeout =  5 * time.Second
+		op.Timeout = 5 * time.Second
 	})
 	trace.SetSamplingFrequency(50)
 	t, io, err := trace.NewTracer(constex.SRV_GATAWAY, "localhost:6831")

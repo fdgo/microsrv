@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 )
+
 func ConnectUs(c *gin.Context) {
 	ret_resp := mygormdl.DsSysInfo{}
 	defer func() {
