@@ -4,7 +4,6 @@ import (
 	"context"
 	pb "ds_server/proto/user"
 	_ "ds_server/support/utils/httpex"
-	"ds_server/support/utils/rsp"
 	"fmt"
 )
 
@@ -39,7 +38,7 @@ func (usersrv *UserService) MemberUsdtRecharge(ctx context.Context, req *pb.Memb
 	//3、根据充值金额更新上级代理等级
 	//usersrv.updateAgent(uuid, amount);
 
-	rsp.RespSrv(200, 200, "处理成功!", "处理成功!", []byte{}, rsq)
+	fmt.Println(200, 200, "处理成功!", "处理成功!", []byte{}, rsq)
 	return nil
 }
 

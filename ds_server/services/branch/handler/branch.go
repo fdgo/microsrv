@@ -6,7 +6,7 @@ import (
 	"ds_server/services/branch/model"
 	"ds_server/services/branch/service"
 	"ds_server/support/utils/logex"
-	"ds_server/support/utils/logger"
+	"ds_server/support/utils/logex"
 	"encoding/json"
 	"errors"
 	"fmt"

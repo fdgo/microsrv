@@ -10,7 +10,7 @@ import (
 	"ds_server/support/utils/cfg/config"
 	"ds_server/support/utils/constex"
 	"ds_server/support/utils/hystrix"
-	"ds_server/support/utils/logger"
+	"ds_server/support/utils/logex"
 	"ds_server/support/utils/trace"
 	"fmt"
 	"time"

@@ -1,6 +1,6 @@
 package idgenerator
 
-import "ds_server/support/utils/logger"
+import "ds_server/support/utils/logex"
 
 var Log *logger.Logger
 

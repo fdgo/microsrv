@@ -5,14 +5,12 @@ import (
 	"ds_server/support/utils/cors"
 	"ds_server/support/utils/limit"
 	"ds_server/support/utils/logex"
-	rsp "ds_server/support/utils/rsp"
 	time_ex "ds_server/support/utils/timex"
 	"ds_server/support/utils/trace"
+	"fmt"
 	"github.com/gin-gonic/gin"
-	"net/http"
 	"runtime/debug"
 	"strings"
-	"time"
 )
 
 func Log() gin.HandlerFunc {
@@ -44,7 +42,7 @@ func Recover(name string) gin.HandlerFunc {
 					DebugStack += v + "<br>"
 				}
 				str := name + time_ex.GetCurrentTime() + "|" + c.Request.Host + "|" + c.Request.RequestURI + "|" + c.Request.Method + "|" + DebugStack + "|" + c.Request.UserAgent()
-				rtnpkg.GinResponse(500, 500, "系统异常，请联系管理员！", "系统异常，请联系管理员！", str, c)
+				fmt.Println(500, 500, "系统异常，请联系管理员！", "系统异常，请联系管理员！", str, c)
 			}
 		}()
 		c.Next()
@@ -60,7 +58,7 @@ func Auth(token *token.JwtToken) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		istokenok, msg, sub := token.Decode(c.Request, c.Writer)
 		if !istokenok {
-			rsp.RespGin(400, 400, " 请先登录!", msg, "nil", c)
+			fmt.Println(400, 400, " 请先登录!", msg, "nil", c)
 			c.Abort()
 			return
 		}

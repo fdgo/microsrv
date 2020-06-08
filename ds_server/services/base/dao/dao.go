@@ -31,7 +31,7 @@ func (basedao *BaseDao) VfCode(c context.Context, req *pb.VfCodeIn, rsp *pb.Comm
 	if resp.ErrorCode !=0{
 		return errors.New("短信发送失败！")
 	}
-	redisex.Redis().Set(constex.REDIS_USER_VFCODE+req.Mobile,rand_code,0)
+	redisex.RedisInstanceg().Set(constex.REDIS_USER_VFCODE+req.Mobile,rand_code,0)
 	(*rsp).Httpcode = 200
 	(*rsp).Msg = "success"
 	(*rsp).Code = 200

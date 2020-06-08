@@ -5,7 +5,6 @@ import (
 	"crypto/sha256"
 	"ds_server/services/user/service/dto"
 	"ds_server/support/utils/encoder"
-	"ds_server/support/utils/logger"
 	"ds_server/support/utils/query"
 	"encoding/hex"
 	"errors"
@@ -50,12 +49,10 @@ func (service UsdtService) GetAddress(coinName string) (res2 dto.GetAddressRespo
 	sign := service.ComputeHmacSha256(enStr, "6fpvAq4X2aKCJ1inpLeY1GsU5CchTVNr9tQvnZMkBtjENubWVS")
 	log.Infoln("===========sign=============", sign)
 	req.Sign = sign
-	log.Infoln("=========================", logger.FormatStruct(req))
 	err = service.UsPost(url, req, &res)
 	if err != nil {
 		return res, err
 	}
-	log.Infoln("=============res============", logger.FormatStruct(res))
 	return res, nil
 }
 
@@ -70,7 +67,6 @@ func (service UsdtService) GetBalance() (err error) {
 
 	sign := service.ComputeHmacSha256(enStr, "6fpvAq4X2aKCJ1inpLeY1GsU5CchTVNr9tQvnZMkBtjENubWVS")
 	req.Sign = sign
-	log.Infoln("=============GetBalance============", logger.FormatStruct(req))
 	// reqJSON, err := json.Marshal(req)
 	// if err != nil {
 	// 	Log.Error(err)
@@ -78,7 +74,6 @@ func (service UsdtService) GetBalance() (err error) {
 	// }
 	res := &dto.GetBalanceResponse{}
 	service.UsPost(url, req, res)
-	log.Infoln("=============res============", logger.FormatStruct(res))
 	return nil
 }
 

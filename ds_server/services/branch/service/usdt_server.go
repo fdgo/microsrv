@@ -5,7 +5,6 @@ import (
 	"crypto/sha256"
 	"ds_server/services/branch/service/dto"
 	"ds_server/support/utils/encoder"
-	"ds_server/support/utils/logger"
 	"ds_server/support/utils/query"
 	"encoding/hex"
 	"errors"
@@ -48,7 +47,6 @@ func (service UsdtService) GetAddress() (res2 dto.GetAddressResponse, err error)
 
 	req.Sign = sign
 
-	log.Infoln("=========================", logger.FormatStruct(req))
 	// reqJSON, err := json.Marshal(req)
 	// if err != nil {
 	// 	Log.Error(err)
@@ -57,10 +55,8 @@ func (service UsdtService) GetAddress() (res2 dto.GetAddressResponse, err error)
 
 	err = service.UsPost(url, req, &res)
 	if err != nil {
-		Log.Error(err)
 		return res, err
 	}
-	log.Infoln("=============res============", logger.FormatStruct(res))
 	return res, nil
 }
 
@@ -75,7 +71,6 @@ func (service UsdtService) GetBalance() (err error) {
 
 	sign := service.ComputeHmacSha256(enStr, "6fpvAq4X2aKCJ1inpLeY1GsU5CchTVNr9tQvnZMkBtjENubWVS")
 	req.Sign = sign
-	log.Infoln("=============GetBalance============", logger.FormatStruct(req))
 	// reqJSON, err := json.Marshal(req)
 	// if err != nil {
 	// 	Log.Error(err)
@@ -83,7 +78,6 @@ func (service UsdtService) GetBalance() (err error) {
 	// }
 	res := &dto.GetBalanceResponse{}
 	service.UsPost(url, req, res)
-	log.Infoln("=============res============", logger.FormatStruct(res))
 	return nil
 }
 
@@ -102,14 +96,11 @@ func (service UsdtService) UsPost(url string, reqJSON interface{}, resp interfac
 
 	//	body, err := httpex.Post(url, "application/json", strings.NewReader(string(encoder.Base64Encode(reqJSON))))
 	if err != nil {
-		Log.Error(err)
 		return
 	}
 	body2, _ := ioutil.ReadAll(body.Body)
-	Log.Debug("body: %v", string(body2))
 	emsg := ""
 	if err != nil {
-		Log.Errorf("errs = %v", err)
 		emsg = fmt.Sprintf("errs = %v", err)
 		err = errors.New("请求三方服务器失败")
 	} else if len(body2) == 0 {

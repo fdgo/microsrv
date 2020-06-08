@@ -7,7 +7,6 @@ import (
 	rspmdl "ds_server/models/user/gin_rsp"
 	useproto "ds_server/proto/user"
 	"ds_server/support/utils/param"
-	rsp "ds_server/support/utils/rsp"
 	"ds_server/support/utils/trace"
 	"encoding/json"
 	"fmt"
@@ -26,17 +25,17 @@ func Regist(c *gin.Context) {
 	}()
 	var in reqmdl.Regist_req
 	if err := c.ShouldBindJSON(&in); err != nil {
-		rsp.RespGin(400, 400, "输入有误,请重写输入!", "参数有误", err.Error(), c)
+		fmt.Println(400, 400, "输入有误,请重写输入!", "参数有误", err.Error(), c)
 		return
 	}
 	isok, _ := param.IsParam(in)
 	if !isok {
-		rsp.RespGin(400, 400, "输入有误,请重写输入!", "参数有误", "参数有误", c)
+		fmt.Println(400, 400, "输入有误,请重写输入!", "参数有误", "参数有误", c)
 		return
 	}
 	ctx, ok := trace.ContextWithSpan(c)
 	if !ok {
-		log.Warn("不存在context")
+		fmt.Println("不存在context")
 		c.JSON(200, gin.H{
 			"code": -1,
 			"msg":  "不存在context",
@@ -51,10 +50,10 @@ func Regist(c *gin.Context) {
 	rtin.ClientIp = c.Request.RemoteAddr
 	ret, err := client.UserClient.Regist(ctx, &rtin)
 	if err != nil {
-		rsp.RespGin(400, 400, "注册失败!", err.Error(), "注册失败!", c)
+		fmt.Println(400, 400, "注册失败!", err.Error(), "注册失败!", c)
 		return
 	}
-	rsp.RespGin((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, string((*ret).Data), c)
+	fmt.Println((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, string((*ret).Data), c)
 }
 func Login(c *gin.Context) {
 	var ret_resp rspmdl.Login_rsp
@@ -65,12 +64,12 @@ func Login(c *gin.Context) {
 	}()
 	var in reqmdl.Login_req
 	if err := c.ShouldBindJSON(&in); err != nil {
-		rsp.RespGin(400, 400, "输入有误,请重写输入!", "参数有误", ret_resp, c)
+		fmt.Println(400, 400, "输入有误,请重写输入!", "参数有误", ret_resp, c)
 		return
 	}
 	isok, _ := param.IsParam(in)
 	if !isok {
-		rsp.RespGin(400, 400, "输入有误,请重写输入!", "参数有误", ret_resp, c)
+		fmt.Println(400, 400, "输入有误,请重写输入!", "参数有误", ret_resp, c)
 		return
 	}
 	var logIn useproto.LoginIn
@@ -81,11 +80,11 @@ func Login(c *gin.Context) {
 	logIn.Type = in.Type
 	ret, err := client.UserClient.Login(c, &logIn)
 	if err != nil {
-		rsp.RespGin(400, 400, err.Error(), err.Error(), ret_resp, c)
+		fmt.Println(400, 400, err.Error(), err.Error(), ret_resp, c)
 		return
 	}
 	json.Unmarshal((*ret).Data, &ret_resp)
-	rsp.RespGin((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, ret_resp, c)
+	fmt.Println((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, ret_resp, c)
 }
 func ModifyLoginPwd(c *gin.Context) {
 	//wmh
@@ -96,12 +95,12 @@ func ModifyLoginPwd(c *gin.Context) {
 	}()
 	var in reqmdl.ModifyLoginPwd_req
 	if err := c.ShouldBindJSON(&in); err != nil {
-		rsp.RespGin(400, 400, err.Error(), err.Error(), "编辑失败！", c)
+		fmt.Println(400, 400, err.Error(), err.Error(), "编辑失败！", c)
 		return
 	}
 	isok, _ := param.IsParam(in)
 	if !isok {
-		rsp.RespGin(400, 400, "输入有误,请重写输入!", "参数有误！", "编辑失败！", c)
+		fmt.Println(400, 400, "输入有误,请重写输入!", "参数有误！", "编辑失败！", c)
 		return
 	}
 	var etin useproto.ModifyLoginPwdIn
@@ -110,10 +109,10 @@ func ModifyLoginPwd(c *gin.Context) {
 	etin.Newpwd = in.NewPwd
 	ret, err := client.UserClient.ModifyLoginPwd(c, &etin)
 	if err != nil {
-		rsp.RespGin(400, 400, err.Error(), err.Error(), "", c)
+		fmt.Println(400, 400, err.Error(), err.Error(), "", c)
 		return
 	}
-	rsp.RespGin((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, string((*ret).Data), c)
+	fmt.Println((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, string((*ret).Data), c)
 }
 func ForgetPwd(c *gin.Context) {
 	defer func() {
@@ -123,12 +122,12 @@ func ForgetPwd(c *gin.Context) {
 	}()
 	var in reqmdl.ModifyBasicPwd_req
 	if err := c.ShouldBindJSON(&in); err != nil {
-		rsp.RespGin(400, 400, err.Error(), err.Error(), "编辑失败！", c)
+		fmt.Println(400, 400, err.Error(), err.Error(), "编辑失败！", c)
 		return
 	}
 	isok, _ := param.IsParam(in)
 	if !isok {
-		rsp.RespGin(400, 400, "输入有误,请重写输入!", "参数有误！", "编辑失败！", c)
+		fmt.Println(400, 400, "输入有误,请重写输入!", "参数有误！", "编辑失败！", c)
 		return
 	}
 	var etin useproto.ModifyBasicPwdIn
@@ -138,10 +137,10 @@ func ForgetPwd(c *gin.Context) {
 	etin.Mobile = in.Mobile
 	ret, err := client.UserClient.ModifyBasicPwd(c, &etin)
 	if err != nil {
-		rsp.RespGin(400, 400, err.Error(), err.Error(), "", c)
+		fmt.Println(400, 400, err.Error(), err.Error(), "", c)
 		return
 	}
-	rsp.RespGin((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, string((*ret).Data), c)
+	fmt.Println((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, string((*ret).Data), c)
 }
 func SetPaypwd(c *gin.Context) {
 	defer func() {
@@ -151,12 +150,12 @@ func SetPaypwd(c *gin.Context) {
 	}()
 	var in reqmdl.SetPaypwd
 	if err := c.ShouldBindJSON(&in); err != nil {
-		rsp.RespGin(400, 400, err.Error(), err.Error(), "！", c)
+		fmt.Println(400, 400, err.Error(), err.Error(), "！", c)
 		return
 	}
 	isok, _ := param.IsParam(in)
 	if !isok {
-		rsp.RespGin(400, 400, "输入有误,请重写输入!", "参数有误！", "！", c)
+		fmt.Println(400, 400, "输入有误,请重写输入!", "参数有误！", "！", c)
 		return
 	}
 	var etin useproto.SetPaypwdIn
@@ -166,10 +165,10 @@ func SetPaypwd(c *gin.Context) {
 	etin.Uuid = c.Request.Header.Get("X-Head-Uuid")
 	ret, err := client.UserClient.SetPaypwd(c, &etin)
 	if err != nil {
-		rsp.RespGin(400, 400, err.Error(), err.Error(), "", c)
+		fmt.Println(400, 400, err.Error(), err.Error(), "", c)
 		return
 	}
-	rsp.RespGin((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, string((*ret).Data), c)
+	fmt.Println((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, string((*ret).Data), c)
 
 }
 func ModifyPayPwd(c *gin.Context) {
@@ -180,12 +179,12 @@ func ModifyPayPwd(c *gin.Context) {
 	}()
 	var in reqmdl.ModifyPayPwd_req
 	if err := c.ShouldBindJSON(&in); err != nil {
-		rsp.RespGin(400, 400, err.Error(), err.Error(), "参数有误！", c)
+		fmt.Println(400, 400, err.Error(), err.Error(), "参数有误！", c)
 		return
 	}
 	isok, _ := param.IsParam(in)
 	if !isok {
-		rsp.RespGin(400, 400, "输入有误,请重写输入!", "参数有误！", "！", c)
+		fmt.Println(400, 400, "输入有误,请重写输入!", "参数有误！", "！", c)
 		return
 	}
 	var etin useproto.ModifyPayPwdIn
@@ -195,10 +194,10 @@ func ModifyPayPwd(c *gin.Context) {
 	etin.Uuid = c.Request.Header.Get("X-Head-Uuid")
 	ret, err := client.UserClient.ModifyPayPwd(c, &etin)
 	if err != nil {
-		rsp.RespGin(400, 400, err.Error(), err.Error(), "", c)
+		fmt.Println(400, 400, err.Error(), err.Error(), "", c)
 		return
 	}
-	rsp.RespGin((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, string((*ret).Data), c)
+	fmt.Println((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, string((*ret).Data), c)
 }
 
 func UserInfo(c *gin.Context) {

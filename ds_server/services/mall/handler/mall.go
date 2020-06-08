@@ -5,7 +5,7 @@ import (
 	pb "ds_server/proto/mall"
 	"ds_server/services/mall/model"
 	"ds_server/services/mall/service"
-	"ds_server/support/utils/logger"
+	"ds_server/support/utils/logex"
 	"encoding/json"
 	"fmt"
 	"time"

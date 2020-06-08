@@ -8,9 +8,7 @@ import (
 	useproto "ds_server/proto/user"
 	"ds_server/support/utils/constex"
 	"strconv"
-
 	"ds_server/support/utils/param"
-	"ds_server/support/utils/rsp"
 	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -26,11 +24,11 @@ func ExchangeRate(c *gin.Context) {
 	var rtin useproto.ExchangeRateIn
 	ret, err := client.UserClient.ExchangeRate(c, &rtin)
 	if err != nil {
-		rsp.RespGin(400, 400, err.Error(), err.Error(), ret_resp, c)
+		fmt.Println(400, 400, err.Error(), err.Error(), ret_resp, c)
 		return
 	}
 	json.Unmarshal((*ret).Data, &ret_resp)
-	rsp.RespGin((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, ret_resp, c)
+	fmt.Println((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, ret_resp, c)
 }
 func GetMemberUserAgent(c *gin.Context) {
 	var ret_resp rspmdl.MemAgent_rsp
@@ -43,11 +41,11 @@ func GetMemberUserAgent(c *gin.Context) {
 	rtin.Uuid = c.Request.Header.Get("X-Head-Uuid")
 	ret, err := client.UserClient.GetMemberUserAgent(c, &rtin)
 	if err != nil {
-		rsp.RespGin(400, 400, err.Error(), err.Error(), ret_resp, c)
+		fmt.Println(400, 400, err.Error(), err.Error(), ret_resp, c)
 		return
 	}
 	json.Unmarshal((*ret).Data, &ret_resp)
-	rsp.RespGin((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, ret_resp, c)
+	fmt.Println((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, ret_resp, c)
 }
 func MemberDepositLog(c *gin.Context) {
 	var ret_resp rspmdl.MemberDepositLog_rsp
@@ -70,14 +68,14 @@ func MemberDepositLog(c *gin.Context) {
 		rtin.Uuid = c.Request.Header.Get("X-Head-Uuid")
 		ret, err := client.UserClient.MemberDepositLog(c, &rtin)
 		if err != nil {
-			rsp.RespGin(400, 400, "服务调用失败!", err.Error(), ret_resp, c)
+			fmt.Println(400, 400, "服务调用失败!", err.Error(), ret_resp, c)
 			return
 		}
 		json.Unmarshal((*ret).Data, &ret_resp)
-		rsp.RespGin((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, ret_resp, c)
+		fmt.Println((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, ret_resp, c)
 		return
 	}
-	rsp.RespGin(400, 400, "充值类型错误!", "充值类型错误!", ret_resp, c)
+	fmt.Println(400, 400, "充值类型错误!", "充值类型错误!", ret_resp, c)
 	return
 }
 func MemberDeposit(c *gin.Context) {
@@ -89,12 +87,12 @@ func MemberDeposit(c *gin.Context) {
 	}()
 	var in reqmdl.MemberDeposit_req
 	if err := c.ShouldBindJSON(&in); err != nil {
-		rsp.RespGin(400, 400, err.Error(), err.Error(), ret_resp, c)
+		fmt.Println(400, 400, err.Error(), err.Error(), ret_resp, c)
 		return
 	}
 	isok, _ := param.IsParam(in)
 	if !isok {
-		rsp.RespGin(400, 400, "输入有误,请重写输入!", "参数有误,请重写输入!", ret_resp, c)
+		fmt.Println(400, 400, "输入有误,请重写输入!", "参数有误,请重写输入!", ret_resp, c)
 		return
 	}
 	var rtin useproto.MemberDepositIn
@@ -107,11 +105,11 @@ func MemberDeposit(c *gin.Context) {
 	rtin.InvcodeAgent = c.Request.Header.Get("X-Head-InvCodeAgent")
 	ret, err := client.UserClient.MemberDeposit(c, &rtin)
 	if err != nil {
-		rsp.RespGin(400, 400, err.Error(), err.Error(), ret_resp, c)
+		fmt.Println(400, 400, err.Error(), err.Error(), ret_resp, c)
 		return
 	}
 	json.Unmarshal((*ret).Data, &ret_resp)
-	rsp.RespGin((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, ret_resp, c)
+	fmt.Println((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, ret_resp, c)
 }
 
 func OnlinePay(c *gin.Context) {
@@ -123,12 +121,12 @@ func OnlinePay(c *gin.Context) {
 	}()
 	var in reqmdl.OnlinePay_req
 	if err := c.ShouldBindJSON(&in); err != nil {
-		rsp.RespGin(400, 400, err.Error(), err.Error(), ret_resp, c)
+		fmt.Println(400, 400, err.Error(), err.Error(), ret_resp, c)
 		return
 	}
 	isok, _ := param.IsParam(in)
 	if !isok {
-		rsp.RespGin(400, 400, "输入有误,请重写输入!", "参数有误", ret_resp, c)
+		fmt.Println(400, 400, "输入有误,请重写输入!", "参数有误", ret_resp, c)
 		return
 	}
 	var rtin useproto.OnlinePayIn
@@ -141,11 +139,11 @@ func OnlinePay(c *gin.Context) {
 	//rtin.InvcodeAgent = c.Request.Header.Get("X-Head-InvCodeAgent")
 	ret, err := client.UserClient.OnlinePay(c, &rtin)
 	if err != nil {
-		rsp.RespGin(400, 400, err.Error(), err.Error(), ret_resp, c)
+		fmt.Println(400, 400, err.Error(), err.Error(), ret_resp, c)
 		return
 	}
 	json.Unmarshal((*ret).Data, &ret_resp)
-	rsp.RespGin((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, ret_resp, c)
+	fmt.Println((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, ret_resp, c)
 }
 func AgentClassSet(c *gin.Context) {
 	defer func() {
@@ -155,16 +153,16 @@ func AgentClassSet(c *gin.Context) {
 	}()
 	var in reqmdl.AgentClassSet_req
 	if err := c.ShouldBindJSON(&in); err != nil {
-		rsp.RespGin(400, 400, "输入有误,请重写输入!", "参数有误", "", c)
+		fmt.Println(400, 400, "输入有误,请重写输入!", "参数有误", "", c)
 		return
 	}
 	isok, _ := param.IsParam(in)
 	if !isok {
-		rsp.RespGin(400, 400, "输入有误,请重写输入!", "参数有误", "", c)
+		fmt.Println(400, 400, "输入有误,请重写输入!", "参数有误", "", c)
 		return
 	}
 	if in.Money1 > in.Money2 || in.Money2 > in.Money3 || in.Money3 > in.Money4 || in.Money4 > in.Money5 {
-		rsp.RespGin(400, 400, "金额从money1到money5依次递增", "金额从money1到money5依次递增", "金额从money1到money5依次递增", c)
+		fmt.Println(400, 400, "金额从money1到money5依次递增", "金额从money1到money5依次递增", "金额从money1到money5依次递增", c)
 		return
 	}
 	var etin useproto.AgentClassSetIn
@@ -251,10 +249,10 @@ func AgentClassSet(c *gin.Context) {
 	etin.Agentname5 = in.AgentName5
 	ret, err := client.UserClient.AgentClassSet(c, &etin)
 	if err != nil {
-		rsp.RespGin(400, 400, err.Error(), err.Error(), "", c)
+		fmt.Println(400, 400, err.Error(), err.Error(), "", c)
 		return
 	}
-	rsp.RespGin((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, string((*ret).Data), c)
+	fmt.Println((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, string((*ret).Data), c)
 }
 func MemerClassSet(c *gin.Context) {
 	defer func() {
@@ -264,16 +262,16 @@ func MemerClassSet(c *gin.Context) {
 	}()
 	var in reqmdl.MemClassSet_req
 	if err := c.ShouldBindJSON(&in); err != nil {
-		rsp.RespGin(400, 400, "输入有误,请重写输入!", "参数有误", "", c)
+		fmt.Println(400, 400, "输入有误,请重写输入!", "参数有误", "", c)
 		return
 	}
 	isok, _ := param.IsParam(in)
 	if !isok {
-		rsp.RespGin(400, 400, "输入有误,请重写输入!", "参数有误", "", c)
+		fmt.Println(400, 400, "输入有误,请重写输入!", "参数有误", "", c)
 		return
 	}
 	if in.Money1 > in.Money2 || in.Money2 > in.Money3 || in.Money3 > in.Money4 || in.Money4 > in.Money5 {
-		rsp.RespGin(400, 400, "金额从money1到money5依次递增", "金额从money1到money5依次递增", "金额从money1到money5依次递增", c)
+		fmt.Println(400, 400, "金额从money1到money5依次递增", "金额从money1到money5依次递增", "金额从money1到money5依次递增", c)
 		return
 	}
 	var etin useproto.MemerClassSetIn
@@ -359,10 +357,10 @@ func MemerClassSet(c *gin.Context) {
 	etin.Memname5 = in.MemName5
 	ret, err := client.UserClient.MemerClassSet(c, &etin)
 	if err != nil {
-		rsp.RespGin(400, 400, err.Error(), err.Error(), "", c)
+		fmt.Println(400, 400, err.Error(), err.Error(), "", c)
 		return
 	}
-	rsp.RespGin((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, string((*ret).Data), c)
+	fmt.Println((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, string((*ret).Data), c)
 
 }
 
@@ -379,11 +377,11 @@ func UsdtRechargeCallback_xx(c *gin.Context) {
 	rtin.Amount = float32(Amount)
 	ret, err := client.UserClient.MemberUsdtRecharge(c, &rtin)
 	if err != nil {
-		rsp.RespGin(400, 400, err.Error(), err.Error(), ret_resp, c)
+		fmt.Println(400, 400, err.Error(), err.Error(), ret_resp, c)
 		return
 	}
 	json.Unmarshal((*ret).Data, &ret_resp)
-	rsp.RespGin((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, ret_resp, c)
+	fmt.Println((*ret).Httpcode, (*ret).Innercode, (*ret).Clientmsg, (*ret).Innermsg, ret_resp, c)
 }
 
 func UsdtRechargeCallback(c *gin.Context) {
@@ -396,9 +394,9 @@ func UsdtRechargeCallback(c *gin.Context) {
 		}
 	}()
 	if err := c.ShouldBindJSON(&ret_resp); err != nil {
-		rsp.RespGin(400, 400, err.Error(), err.Error(), ret_resp, c)
+		fmt.Println(400, 400, err.Error(), err.Error(), ret_resp, c)
 		return
 	}
 	fmt.Println(ret_resp)
-	rsp.RespGin(200, 0, "", "", ret_resp, c)
+	fmt.Println(200, 0, "", "", ret_resp, c)
 }

@@ -55,12 +55,13 @@ import (
 	"fmt"
 	"github.com/go-stack/stack"
 	"github.com/lestrrat/go-file-rotatelogs"
-	"github.com/olivere/elastic"
 	"github.com/pkg/errors"
 	"github.com/rifflock/lfshook"
-	"github.com/sirupsen/logrus"
 	"os"
 	"time"
+	"github.com/olivere/elastic/v7"
+	"github.com/sirupsen/logrus"
+	"gopkg.in/sohlich/elogrus.v7"
 )
 
 var logger *logrus.Logger
@@ -164,7 +165,7 @@ func configESLogger(esUrl string, esHOst string, index string) {
 		logger.Errorf("config es logger error. %+v", errors.WithStack(err))
 		return
 	}
-	esHook, err := elogrus.NewElasticHook(client, esHOst, logrus.DebugLevel, index)
+	esHook, err := elogrus.NewAsyncElasticHook(client, esHOst, logrus.DebugLevel, index)
 	if err != nil {
 		logger.Errorf("config es logger error. %+v", errors.WithStack(err))
 		return

@@ -12,7 +12,7 @@ services:
     environment:
       NET: "host"
       DB_NAME: "mysql"
-      DB_HOST: "192.168.163.133"
+      DB_HOST: "192.168.43.122"
       DB_PORT: "3306"
       DB_USER: "root"
       DB_PASSWORD: "000000"
@@ -28,7 +28,7 @@ services:
     environment:
       NET: "host"
       DB_NAME: "mysql"
-      DB_HOST: "192.168.163.133"
+      DB_HOST: "192.168.43.122"
       DB_PORT: "3306"
       DB_USER: "root"
       DB_PASSWORD: "000000"
@@ -44,11 +44,11 @@ services:
     environment:
       NET: "host"
       DB_NAME: "mysql"
-      DB_HOST: "192.168.163.133"
+      DB_HOST: "192.168.43.122"
       DB_PORT: "3306"
       DB_USER: "root"
       DB_PASSWORD: "000000"
-      REDIS_ADDR: "127.0.0.1:6379"
+      REDIS_ADDR: "192.168.43.122:6379"
       REDIS_PWD: "000000"
     depends_on:
       - mysql

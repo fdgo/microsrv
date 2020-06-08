@@ -7,7 +7,6 @@ import (
 	pb "ds_server/proto/user"
 	"ds_server/support/lib/redisex"
 	"ds_server/support/utils/constex"
-	"ds_server/support/utils/rsp"
 	"ds_server/support/utils/sign/md5"
 	"ds_server/support/utils/stringex"
 	"encoding/json"
@@ -30,7 +29,7 @@ func (usersrv *UserService) Regist(ctx context.Context, req *pb.RegistIn, rsq *p
 	}
 	_, errret := usersrv.DsUserMemberAgentDao.IsInvCodeExist(req.Invcodeagent)
 	if errret != nil {
-		rsp.RespSrv(400, 400, "邀请码无效!", "邀请码无效！", []byte(""), rsq)
+		fmt.Println(400, 400, "邀请码无效!", "邀请码无效！", []byte(""), rsq)
 		return errr.New("邀请码无效")
 	}
 	salt := stringex.GetRandomString(16)
@@ -43,7 +42,7 @@ RECYCLE:
 	}).Error
 	if err != nil {
 		if err.Error() == fmt.Sprintf("Error 1062: Duplicate entry '%s' for key 'mobile'", req.Mobile) {
-			rsp.RespSrv(400, 400, "手机号已经注册，请用新号码注册!", "手机号已经注册，请用新号码注册!", []byte(""), rsq)
+			fmt.Println(400, 400, "手机号已经注册，请用新号码注册!", "手机号已经注册，请用新号码注册!", []byte(""), rsq)
 			tx.Rollback()
 			return errr.New("手机号已经注册，请用新号码注册!")
 		}
@@ -56,7 +55,7 @@ RECYCLE:
 		Balance: 0, CreateTime: time.Now().Local(), UpdateTime: time.Now().Local()}).Error
 	if err != nil {
 		if err.Error() == fmt.Sprintf("Error 1062: Duplicate entry '%s' for key 'mobile'", req.Mobile) {
-			rsp.RespSrv(400, 400, "手机号已经注册，请用新号码注册!", "手机号已经注册，请用新号码注册!", []byte(""), rsq)
+			fmt.Println(400, 400, "手机号已经注册，请用新号码注册!", "手机号已经注册，请用新号码注册!", []byte(""), rsq)
 			tx.Rollback()
 			return errr.New("手机号已经注册，请用新号码注册!")
 		}
@@ -67,7 +66,7 @@ RECYCLE:
 	}
 	result, errer := usersrv.DsUserMemberAgentDao.GetUserMemAgentEx(tx, req.Invcodeagent)
 	if errer != nil {
-		rsp.RespSrv(400, 400, "手机号已经注册，请用新号码注册!", "手机号已经注册，请用新号码注册!", []byte(""), rsq)
+		fmt.Println(400, 400, "手机号已经注册，请用新号码注册!", "手机号已经注册，请用新号码注册!", []byte(""), rsq)
 		tx.Rollback()
 		return errr.New("邀请码错误!")
 	}
@@ -78,7 +77,7 @@ RECYCLE:
 		AgentTag: "", AgentName: ""}).Error
 	if err != nil {
 		if err.Error() == fmt.Sprintf("Error 1062: Duplicate entry '%s' for key 'mobile_self'", req.Mobile) {
-			rsp.RespSrv(400, 400, "手机号已经注册，请用新号码注册!", "手机号已经注册，请用新号码注册!", []byte(""), rsq)
+			fmt.Println(400, 400, "手机号已经注册，请用新号码注册!", "手机号已经注册，请用新号码注册!", []byte(""), rsq)
 			tx.Rollback()
 			return errr.New("手机号已经注册，请用新号码注册!")
 		}
@@ -92,7 +91,7 @@ RECYCLE:
 		}
 	}
 	tx.Commit()
-	rsp.RespSrv(200, 200, "手机号注册成功!", "手机号注册成功!", []byte(""), rsq)
+	fmt.Println(200, 200, "手机号注册成功!", "手机号注册成功!", []byte(""), rsq)
 	return nil
 }
 func (usersrv *UserService) Login(ctx context.Context, req *pb.LoginIn, rsq *pb.CommonOut) error {
@@ -108,11 +107,11 @@ func (usersrv *UserService) Login(ctx context.Context, req *pb.LoginIn, rsq *pb.
 	if req.Type == "1" {
 		userbasic, err := usersrv.DsUserBasicinfoDao.GetHashSalt(req.Mobile)
 		if err != nil {
-			rsp.RespSrv(400, 400, "该手机号不存在!", "该手机号不存在!", tmp_resp_err, rsq)
+			fmt.Println(400, 400, "该手机号不存在!", "该手机号不存在!", tmp_resp_err, rsq)
 			return errors.New("该手机号不存在!")
 		}
 		if userbasic.Hash != md5.HashForPwd(userbasic.Salt, req.Pwd) {
-			rsp.RespSrv(400, 400, "密码错误!", "密码错误!", tmp_resp_err, rsq)
+			fmt.Println(400, 400, "密码错误!", "密码错误!", tmp_resp_err, rsq)
 			return errors.New("密码错误!")
 		}
 	} else if req.Type == "0" {
@@ -123,32 +122,29 @@ func (usersrv *UserService) Login(ctx context.Context, req *pb.LoginIn, rsq *pb.
 		//手机验证码
 		_, err = usersrv.DsUserBasicinfoDao.LoginVfcode(req.Mobile)
 		if err != nil {
-			rsp.RespSrv(400, 400, "该手机号不存在或者验证码错误!", "该手机号不存在或者验证码错误!", tmp_resp_err, rsq)
+			fmt.Println(400, 400, "该手机号不存在或者验证码错误!", "该手机号不存在或者验证码错误!", tmp_resp_err, rsq)
 			return errors.New("该手机号不存在或者验证码错误!")
 		}
 	} else {
-		rsp.RespSrv(400, 400, "登陆方式有误!", "登陆方式有误!", tmp_resp_err, rsq)
+		fmt.Println(400, 400, "登陆方式有误!", "登陆方式有误!", tmp_resp_err, rsq)
 		return err
 	}
 	tx := usersrv.DsUserBasicinfoDao.Begin()
 	basicinfo, errb := usersrv.DsUserBasicinfoDao.GetUserBasicInfoex(tx, req.Mobile)
 	if errb != nil {
-		fmt.Println("77777777777777777773333333333333333333333")
-		rsp.RespSrv(400, 400, "获取会员信息失败!", "获取会员信息失败", tmp_resp_err, rsq)
+		fmt.Println(400, 400, "获取会员信息失败!", "获取会员信息失败", tmp_resp_err, rsq)
 		tx.Rollback()
 		return err
 	}
 	memagent, errm := usersrv.DsUserMemberAgentDao.GetUserMemAgent(tx, basicinfo.UUID)
 	if errm != nil {
-		fmt.Println("kkkkkkkkkkkk")
-		rsp.RespSrv(400, 400, "获取会员信息失败!", "获取会员信息失败", tmp_resp_err, rsq)
+		fmt.Println(400, 400, "获取会员信息失败!", "获取会员信息失败", tmp_resp_err, rsq)
 		tx.Rollback()
 		return err
 	}
 	memacct, errat := usersrv.DsUserMemberAccountDao.GetSelfMemberAccount(tx, basicinfo.UUID)
 	if errat != nil {
-		fmt.Println("66666666666666666777777777888888888888")
-		rsp.RespSrv(400, 400, "获取会员信息失败!", "获取会员信息失败", tmp_resp_err, rsq)
+		fmt.Println(400, 400, "获取会员信息失败!", "获取会员信息失败", tmp_resp_err, rsq)
 		tx.Rollback()
 		return err
 	}
@@ -171,12 +167,12 @@ func (usersrv *UserService) Login(ctx context.Context, req *pb.LoginIn, rsq *pb.
 	err = usersrv.DsUserBasicinfoDao.SetLastLogin(tx, req.Mobile, req.ClientIp, time.Now().Local())
 	if err != nil {
 		tx.Rollback()
-		rsp.RespSrv(400, 400, "设置登陆记录失败!", err.Error(), tmp_resp_err, rsq)
+		fmt.Println(400, 400, "设置登陆记录失败!", err.Error(), tmp_resp_err, rsq)
 		return err
 	}
 	tx.Commit()
 	tmp_resp_nor, _ := json.Marshal(tmp_resp)
-	rsp.RespSrv(200, 200, "登陆成功!", "登陆成功!", tmp_resp_nor, rsq)
+	fmt.Println(200, 200, "登陆成功!", "登陆成功!", tmp_resp_nor, rsq)
 	return nil
 }
 
@@ -192,10 +188,10 @@ func (usersrv *UserService) SetPaypwd(ctx context.Context, req *pb.SetPaypwdIn, 
 	}
 	e := usersrv.DsUserMemberAccountDao.SetPaypwd(req.Uuid,req.Paypwd,req.Vfcode,req.Mobile)
 	if e != nil {
-		rsp.RespSrv(400, 400, e.Error(), e.Error(), []byte(""), rsq)
+		fmt.Println(400, 400, e.Error(), e.Error(), []byte(""), rsq)
 		return e
 	}
-	rsp.RespSrv(200, 200, "支付密码设置成功!", "支付密码设置成功!", []byte(""), rsq)
+	fmt.Println(200, 200, "支付密码设置成功!", "支付密码设置成功!", []byte(""), rsq)
 	return nil
 }
 func (usersrv *UserService) ModifyBasicPwd(ctx context.Context, req *pb.ModifyBasicPwdIn, rsq *pb.CommonOut) error {
@@ -206,10 +202,10 @@ func (usersrv *UserService) ModifyBasicPwd(ctx context.Context, req *pb.ModifyBa
 	}()
 	e := usersrv.DsUserBasicinfoDao.ModifyUserInfo(req.Tag, req.Mobile,req.Vfcode, req.Content)
 	if e != nil {
-		rsp.RespSrv(400, 400, e.Error(), e.Error(), []byte(""), rsq)
+		fmt.Println(400, 400, e.Error(), e.Error(), []byte(""), rsq)
 		return e
 	}
-	rsp.RespSrv(200, 200, "修改成功!", "修改成功!", []byte(""), rsq)
+	fmt.Println(200, 200, "修改成功!", "修改成功!", []byte(""), rsq)
 	return nil
 }
 func (usersrv *UserService) ModifyPayPwd(ctx context.Context, req *pb.ModifyPayPwdIn, rsq *pb.CommonOut) error {
@@ -224,10 +220,10 @@ func (usersrv *UserService) ModifyPayPwd(ctx context.Context, req *pb.ModifyPayP
 	}
 	e := usersrv.DsUserMemberAccountDao.ModifyPayPwd(req.Uuid, req.Newpwd)
 	if e != nil {
-		rsp.RespSrv(400, 400, e.Error(), e.Error(), []byte(""), rsq)
+		fmt.Println(400, 400, e.Error(), e.Error(), []byte(""), rsq)
 		return e
 	}
-	rsp.RespSrv(200, 200, "修改成功!", "修改成功!", []byte(""), rsq)
+	fmt.Println(200, 200, "修改成功!", "修改成功!", []byte(""), rsq)
 	return nil
 }
 func (usersrv *UserService) ModifyLoginPwd(ctx context.Context, req *pb.ModifyLoginPwdIn, rsq *pb.CommonOut) error {
@@ -238,21 +234,21 @@ func (usersrv *UserService) ModifyLoginPwd(ctx context.Context, req *pb.ModifyLo
 	}()
 	basicinfo, errb := usersrv.DsUserBasicinfoDao.GetUserBasicInfoEx(req.Mobile)
 	if errb != nil {
-		rsp.RespSrv(400, 400, "获取会员旧密码失败!", "获取会员旧密码失败", []byte("false"), rsq)
+		fmt.Println(400, 400, "获取会员旧密码失败!", "获取会员旧密码失败", []byte("false"), rsq)
 		return errb
 	}
 	tmpoldhash := md5.HashForPwd(basicinfo.Salt, req.Oldpwd)
 	if tmpoldhash != basicinfo.Hash{
-		rsp.RespSrv(400, 400, "旧密码错误!", "旧密码错误", []byte("false"), rsq)
+		fmt.Println(400, 400, "旧密码错误!", "旧密码错误", []byte("false"), rsq)
 		return errb
 	}
 	newhash := md5.HashForPwd(basicinfo.Salt, req.Newpwd)
 	errx := usersrv.DsUserBasicinfoDao.UpdateLoginPwd(req.Mobile,newhash)
 	if errx!=nil{
-		rsp.RespSrv(400, 400, "登陆密码修改失败!", "登陆密码修改失败!", []byte("false"), rsq)
+		fmt.Println(400, 400, "登陆密码修改失败!", "登陆密码修改失败!", []byte("false"), rsq)
 		return errx
 	}
-	rsp.RespSrv(200, 200, "登陆密码修改成功!", "登陆密码修改成功", []byte("true"), rsq)
+	fmt.Println(200, 200, "登陆密码修改成功!", "登陆密码修改成功", []byte("true"), rsq)
 	return nil
 }
 func (usersrv *UserService) GetMemberUserAgent(ctx context.Context, req *pb.GetMemberUserAgentIn, rsq *pb.CommonOut) error {
@@ -266,19 +262,19 @@ func (usersrv *UserService) GetMemberUserAgent(ctx context.Context, req *pb.GetM
 	tx := usersrv.DsUserBasicinfoDao.Begin()
 	basicinfo, errb := usersrv.DsUserBasicinfoDao.GetUserBasicInfo(tx, req.Uuid)
 	if errb != nil {
-		rsp.RespSrv(400, 400, "获取会员信息失败!", "获取会员信息失败", tmp_resp_err, rsq)
+		fmt.Println(400, 400, "获取会员信息失败!", "获取会员信息失败", tmp_resp_err, rsq)
 		tx.Rollback()
 		return errb
 	}
 	memagent, errm := usersrv.DsUserMemberAgentDao.GetUserMemAgent(tx, basicinfo.UUID)
 	if errm != nil {
-		rsp.RespSrv(400, 400, "获取会员信息失败!", "获取会员信息失败", tmp_resp_err, rsq)
+		fmt.Println(400, 400, "获取会员信息失败!", "获取会员信息失败", tmp_resp_err, rsq)
 		tx.Rollback()
 		return errm
 	}
 	memacct, errat := usersrv.DsUserMemberAccountDao.GetSelfMemberAccount(tx, basicinfo.UUID)
 	if errat != nil {
-		rsp.RespSrv(400, 400, "获取会员信息失败!", "获取会员信息失败", tmp_resp_err, rsq)
+		fmt.Println(400, 400, "获取会员信息失败!", "获取会员信息失败", tmp_resp_err, rsq)
 		tx.Rollback()
 		return errat
 	}
@@ -297,6 +293,6 @@ func (usersrv *UserService) GetMemberUserAgent(ctx context.Context, req *pb.GetM
 	tmp_resp.Balance = memacct.Balance
 	tmp_resp.Ispwd = memacct.Ispwd
 	tmp_resp_nor, _ := json.Marshal(tmp_resp)
-	rsp.RespSrv(200, 200, "获取会员信息成功!", "获取会员信息成功!", tmp_resp_nor, rsq)
+	fmt.Println(200, 200, "获取会员信息成功!", "获取会员信息成功!", tmp_resp_nor, rsq)
 	return nil
 }

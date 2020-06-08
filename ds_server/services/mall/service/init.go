@@ -1,7 +1,7 @@
 package service
 
 import (
-	"ds_server/support/utils/logger"
+	"ds_server/support/utils/logex"
 	"sync"
 
 	"github.com/jinzhu/gorm"
