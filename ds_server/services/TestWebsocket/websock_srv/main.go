@@ -13,8 +13,9 @@ type Streamer struct{}
 
 // Server side stream
 func (e *Streamer) ServerStream(ctx context.Context, req *proto.Request, stream proto.Streamer_ServerStreamStream) error {
-	log.Printf("Got msg %v", req.Count)
-	for i := 0; i < int(req.Count); i++ {
+	log.Printf("no content!")
+	for i := 0; i <10000; i++ {
+		time.Sleep(time.Millisecond*300)
 		if err := stream.Send(&proto.Response{Count: int64(i)}); err != nil {
 			return err
 		}
@@ -46,7 +47,7 @@ var (
 func main() {
 	// new service
 	service := micro.NewService(
-		micro.Name("jz.micro.websock-srv.stream"),
+		micro.Name("ds.srv.webst"),
 		micro.RegisterTTL(time.Second*15),
 		micro.RegisterInterval(time.Second*10),
 		micro.Version("latest"),

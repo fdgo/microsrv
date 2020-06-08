@@ -1,12 +1,11 @@
 package main
 
 import (
+	proto "ds_server/services/TestWebsocket/websock_srv/proto"
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/websocket"
-	proto "ds_server/services/TestWebsocket/websock_srv/proto"
 	"net/url"
-	"time"
 )
 
 func main() {
@@ -19,7 +18,7 @@ func main() {
 		return
 	}
 
-	go timeWriter(conn)
+	//go timeWriter(conn)
 
 	for {
 		_, message, err := conn.ReadMessage()
@@ -28,7 +27,7 @@ func main() {
 			return
 		}
 
-		fmt.Printf("received: %s\n", message)
+		fmt.Println("webst_client recv: ",string(message))
 	}
 }
 
@@ -36,8 +35,8 @@ func timeWriter(conn *websocket.Conn) {
 	var req proto.Request
 	req.Count = 888
 	ret,_ := json.Marshal(req)
-	for {
-		time.Sleep(time.Second * 2)
+	//for {
+		//time.Sleep(time.Second * 2)
 		conn.WriteMessage(websocket.TextMessage, ret)
-	}
+	//}
 }
