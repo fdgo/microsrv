@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package mu.micro.nsq.demo;
-
-message DemoEvent {
-    int32 id = 1;
-    int64 current = 2;
-}
